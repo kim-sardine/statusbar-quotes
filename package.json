@@ -14,49 +14,56 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "good-quotes.select-language",
-				"title": "Select Language",
-				"category": "Good Quote"
-			},
-			{
-				"command": "good-quotes.select-category",
-				"title": "Select Category",
-				"category": "Good Quote"
-			}
-		],
 		"configuration": {
+			"title": "StatusBar Quotes",
 			"properties": {
-				"good-quotes.category": {
+				"statusbar-quotes.category": {
 					"type": "string",
 					"default": "Wise Saying",
 					"enum": ["Wise Saying", "Humor"],
 					"enumDescriptions": [
-						"Hello?",
-						"World!"
-					]
+						"TODO",
+						"TODO"
+					],
+					"description": "TODO"
 				},
-				"good-quotes.language": {
+				"statusbar-quotes.language": {
 					"type": "string",
 					"default": "English",
 					"enum": ["English", "Korean"],
 					"enumDescriptions": [
 						"Hello?",
 						"World!"
-					]
+					],
+					"description": "TODO"
 				}
 			}
-		}
+		},
+		"commands": [
+			{
+				"command": "statusbar-quotes.select-language",
+				"title": "Select Language",
+				"category": "StatusBar Quote"
+			},
+			{
+				"command": "statusbar-quotes.select-category",
+				"title": "Select Category",
+				"category": "StatusBar Quote"
+			}
+		]
 	},
 	"galleryBanner": {
 		"color": "#C80000",
 		"theme": "dark"
 	},
 	"keywords": [
+		"statusbar quote",
+		"statusbar",
 		"quote",
-		"wise saying",
-		"wisdom"
+		"quotes",
+		"good quote",
+		"good quotes",
+		"wise saying"
 	],
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
