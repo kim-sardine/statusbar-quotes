@@ -20,34 +20,31 @@
 				"statusbar-quotes.category": {
 					"type": "string",
 					"default": "Wise Saying",
-					"enum": ["Wise Saying", "Humor"],
+					"enum": ["Wise Saying"],
 					"enumDescriptions": [
-						"TODO",
-						"TODO"
-					],
-					"description": "TODO"
+						"격언, 명언"
+					]
 				},
 				"statusbar-quotes.language": {
 					"type": "string",
 					"default": "English",
 					"enum": ["English", "Korean"],
 					"enumDescriptions": [
-						"Hello?",
-						"World!"
-					],
-					"description": "TODO"
+						"영어",
+						"한글"
+					]
 				}
 			}
 		},
 		"commands": [
 			{
-				"command": "statusbar-quotes.select-language",
-				"title": "Select Language",
+				"command": "statusbar-quotes.change-language",
+				"title": "Change Language setting",
 				"category": "StatusBar Quote"
 			},
 			{
-				"command": "statusbar-quotes.select-category",
-				"title": "Select Category",
+				"command": "statusbar-quotes.change-category",
+				"title": "Change Category setting",
 				"category": "StatusBar Quote"
 			}
 		]

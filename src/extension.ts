@@ -6,47 +6,53 @@ import quotes from './quotes';
 export function activate(context: vscode.ExtensionContext) {
 	const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
 	statusBarItem.show();
+	statusBarItem.command = constants.CMD_SHOW_QUOTE_ON_MODAL;
 	context.subscriptions.push(statusBarItem);
 ​
 
-	let initial_category: string = vscode.workspace.getConfiguration("statusbar-quotes").get("category", constants.CATEGORY_WISE_SAYING);
-	let initial_language: string = vscode.workspace.getConfiguration("statusbar-quotes").get("language", constants.LANG_ENGLISH);
+	let initial_category: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", constants.CATEGORY_WISE_SAYING);
+	let initial_language: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("language", constants.LANG_ENGLISH);
 	const quoter = new Quoter(initial_category, initial_language);
 
 	quoter.start();
 	quoter.onTimeChanged((args) => {
 		statusBarItem.text = args.wiseSayDisplay;
 		statusBarItem.tooltip = args.wiseSayDisplay;
+
 	});
+
+	context.subscriptions.push(vscode.commands.registerCommand(constants.CMD_SHOW_QUOTE_ON_MODAL, () => {
+		vscode.window.showInformationMessage(quoter.quoteNow, {modal:true});
+	}));
 ​
 	
-	const cmdSelectLanguage = vscode.commands.registerCommand('statusbar-quotes.select-language', async () => {
+	const cmdSelectLanguage = vscode.commands.registerCommand(constants.CMD_CHANGE_LANGUAGE, async () => {
 		let language = await vscode.window.showQuickPick([constants.LANG_ENGLISH, constants.LANG_KOREAN], { placeHolder: `Select Language` });
 		if (!language) { return; }
 ​
-		await vscode.workspace.getConfiguration("statusbar-quotes").update("language", language, true);
+		await vscode.workspace.getConfiguration(constants.EXTENSION_ID).update("language", language, true);
 		quoter.setLanguage(language);
 	});
 	context.subscriptions.push(cmdSelectLanguage);
 ​
 	
-	const cmdSelectCatrgory = vscode.commands.registerCommand('statusbar-quotes.select-category', async () => {
-		let category = await vscode.window.showQuickPick([constants.CATEGORY_WISE_SAYING, constants.CATEGORY_HUMOR], { placeHolder: `Select category` });
+	const cmdSelectCatrgory = vscode.commands.registerCommand(constants.CMD_CHANGE_CATEGORY, async () => {
+		let category = await vscode.window.showQuickPick([constants.CATEGORY_WISE_SAYING], { placeHolder: `Select category` });
 		if (!category) { return; }
 ​
-		await vscode.workspace.getConfiguration("statusbar-quotes").update("category", category, true);
+		await vscode.workspace.getConfiguration(constants.EXTENSION_ID).update("category", category, true);
 		quoter.setCategory(category);
 	});
 	context.subscriptions.push(cmdSelectCatrgory);
 ​
 ​
 	const onConfigurationChanged = vscode.workspace.onDidChangeConfiguration((event) => {
-		if (event.affectsConfiguration('statusbar-quotes.language')) {
-			let changed_language: string = vscode.workspace.getConfiguration("statusbar-quotes").get("language", constants.LANG_ENGLISH);
+		if (event.affectsConfiguration(constants.SETTING_LANGUAGE)) {
+			let changed_language: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("language", constants.LANG_ENGLISH);
 			quoter.setLanguage(changed_language);
 		}
-		else if (event.affectsConfiguration('statusbar-quotes.category')) {
-			let changed_category: string = vscode.workspace.getConfiguration("statusbar-quotes").get("category", constants.CATEGORY_WISE_SAYING);
+		else if (event.affectsConfiguration(constants.SETTING_CATEGORY)) {
+			let changed_category: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", constants.CATEGORY_WISE_SAYING);
 			quoter.setCategory(changed_category);
 		}
 	});
@@ -78,6 +84,10 @@ class Quoter {
 
 	get onTimeChanged(): vscode.Event<TimeChangedEventArgs> {
 		return this.timeChangedEventEmitter.event;
+	}
+
+	get quoteNow(): string {
+		return this.quoteDisplay;
 	}
 
 	private updateQuoteListAndChangeDisplay(): void {
@@ -133,7 +143,6 @@ class Quoter {
 		this.category = category;
 		this.updateQuoteListAndChangeDisplay();
 	}
-​
 }
 ​
 export interface TimeChangedEventArgs {
