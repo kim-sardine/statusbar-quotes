@@ -54,7 +54,7 @@
 				"statusbar-quotes.language": {
 					"type": "string",
 					"default": "English",
-					"enum": ["English", "Korean"],
+					"enum": ["English", "Korean"]
 				}
 			}
 		},
