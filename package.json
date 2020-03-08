@@ -2,7 +2,7 @@
 	"name": "statusbar-quotes",
 	"displayName": "StatusBar Quotes",
 	"description": "Here is a sentence to soothe your tired mind from programming.",
-	"icon": "https://raw.githubusercontent.com/kim-sardine/StatusBar-Quotes/master/assets/speech-balloon-ms.png",
+	"icon": "assets/speech-balloon-ms.png",
 	"version": "0.2.0",
 	"publisher": "kim-sardine",
 	"engines": {
