@@ -3,7 +3,7 @@
 	"displayName": "StatusBar Quotes",
 	"description": "Here is a sentence to soothe your tired mind from programming.",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"
@@ -42,31 +42,31 @@
 				"statusbar-quotes.category": {
 					"type": "string",
 					"default": "Wise Saying",
-					"enum": ["Wise Saying"],
+					"enum": [
+						"Wise Saying",
+						"Programming Quotes"
+					],
 					"enumDescriptions": [
-						"격언, 명언"
+						"Get it together!",
+						"May the Force be with you"
 					]
 				},
 				"statusbar-quotes.language": {
 					"type": "string",
 					"default": "English",
 					"enum": ["English", "Korean"],
-					"enumDescriptions": [
-						"영어",
-						"한글"
-					]
 				}
 			}
 		},
 		"commands": [
 			{
 				"command": "statusbar-quotes.change-language",
-				"title": "Change Language setting",
+				"title": "Change language",
 				"category": "StatusBar Quote"
 			},
 			{
 				"command": "statusbar-quotes.change-category",
-				"title": "Change Category setting",
+				"title": "Change category",
 				"category": "StatusBar Quote"
 			}
 		]

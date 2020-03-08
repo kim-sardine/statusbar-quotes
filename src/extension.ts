@@ -3,6 +3,15 @@ import * as vscode from 'vscode';
 import * as constants from './constants';
 import quotes from './quotes';
 
+const DISPLAY_TIME_IN_SEC = 10;
+
+const supportedCategory = [constants.CATEGORY_WISE_SAYING, constants.CATEGORY_PROGRAMMING_QUOTES];
+const supportedLanguage = [constants.LANG_ENGLISH, constants.LANG_KOREAN];
+
+const defaultCategory = constants.CATEGORY_WISE_SAYING;
+const defaultLanguage = constants.LANG_ENGLISH;
+
+
 export function activate(context: vscode.ExtensionContext) {
 	const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
 	statusBarItem.show();
@@ -10,8 +19,8 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(statusBarItem);
 ​
 
-	let initial_category: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", constants.CATEGORY_WISE_SAYING);
-	let initial_language: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("language", constants.LANG_ENGLISH);
+	let initial_category: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", defaultCategory);
+	let initial_language: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("language", defaultLanguage);
 	const quoter = new Quoter(initial_category, initial_language);
 
 	quoter.start();
@@ -24,20 +33,9 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand(constants.CMD_SHOW_QUOTE_ON_MODAL, () => {
 		vscode.window.showInformationMessage(quoter.quoteNow, {modal:true});
 	}));
-​
-	
-	const cmdSelectLanguage = vscode.commands.registerCommand(constants.CMD_CHANGE_LANGUAGE, async () => {
-		let language = await vscode.window.showQuickPick([constants.LANG_ENGLISH, constants.LANG_KOREAN], { placeHolder: `Select Language` });
-		if (!language) { return; }
-​
-		await vscode.workspace.getConfiguration(constants.EXTENSION_ID).update("language", language, true);
-		quoter.setLanguage(language);
-	});
-	context.subscriptions.push(cmdSelectLanguage);
-​
 	
 	const cmdSelectCatrgory = vscode.commands.registerCommand(constants.CMD_CHANGE_CATEGORY, async () => {
-		let category = await vscode.window.showQuickPick([constants.CATEGORY_WISE_SAYING], { placeHolder: `Select category` });
+		let category = await vscode.window.showQuickPick(supportedCategory, { placeHolder: `Select category` });
 		if (!category) { return; }
 ​
 		await vscode.workspace.getConfiguration(constants.EXTENSION_ID).update("category", category, true);
@@ -45,15 +43,23 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 	context.subscriptions.push(cmdSelectCatrgory);
 ​
+	const cmdSelectLanguage = vscode.commands.registerCommand(constants.CMD_CHANGE_LANGUAGE, async () => {
+		let language = await vscode.window.showQuickPick(supportedLanguage, { placeHolder: `Select Language` });
+		if (!language) { return; }
+​
+		await vscode.workspace.getConfiguration(constants.EXTENSION_ID).update("language", language, true);
+		quoter.setLanguage(language);
+	});
+	context.subscriptions.push(cmdSelectLanguage);
 ​
 	const onConfigurationChanged = vscode.workspace.onDidChangeConfiguration((event) => {
-		if (event.affectsConfiguration(constants.SETTING_LANGUAGE)) {
-			let changed_language: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("language", constants.LANG_ENGLISH);
-			quoter.setLanguage(changed_language);
-		}
-		else if (event.affectsConfiguration(constants.SETTING_CATEGORY)) {
-			let changed_category: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", constants.CATEGORY_WISE_SAYING);
+		if (event.affectsConfiguration(constants.SETTING_CATEGORY)) {
+			let changed_category: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", defaultCategory);
 			quoter.setCategory(changed_category);
+		}
+		else if (event.affectsConfiguration(constants.SETTING_LANGUAGE)) {
+			let changed_language: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("language", defaultLanguage);
+			quoter.setLanguage(changed_language);
 		}
 	});
 	context.subscriptions.push(onConfigurationChanged);
@@ -62,8 +68,6 @@ export function activate(context: vscode.ExtensionContext) {
 ​
 class Quoter {
 	private timeChangedEventEmitter = new vscode.EventEmitter<TimeChangedEventArgs>();
-	
-	readonly DISPLAY_TIME_IN_SEC = 10;
 ​
 	private elapsedSeconds: number;
 	private quoteList: string[];
@@ -97,10 +101,11 @@ class Quoter {
 
 	private loadQuotes(): string[] {
 		for (const quote of quotes) {
-			if ( quote.category === this.category && quote.language === this.language) {
+			if ( this.category === quote.category && this.language === quote.language) {
 				return quote.sentences;
 			}
 		}
+		vscode.window.showWarningMessage(`sorry, "${this.category}" in "${this.language}" is not supported now`);
 		return quotes[0].sentences;
 	}
 
@@ -117,7 +122,7 @@ class Quoter {
 	}
 
 	private tick() {
-		if (this.elapsedSeconds >= this.DISPLAY_TIME_IN_SEC) {
+		if (this.elapsedSeconds >= DISPLAY_TIME_IN_SEC) {
 			this.elapsedSeconds = 0;
 			
 			var quote = this.quoteList[Math.floor(Math.random() * this.quoteList.length)];

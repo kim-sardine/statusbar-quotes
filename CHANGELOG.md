@@ -1,9 +1,14 @@
-# Change Log
+### 0.3.0 (2020.03.08)
 
-All notable changes to the "statusbar-quotes" extension will be documented in this file.
+- **New**: Category : `Programming Quotes`
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+<!--  -->
 
-## [Unreleased]
+- **Other**: Show warning message if category or language doesn't exist.
 
-- Initial release
+---
+
+### 0.2.0 (2020.03.08)
+
+- **New**: Category : `Wise Saying`
+- **New**: Language : `English`, `Korean`
