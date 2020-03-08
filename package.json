@@ -1,18 +1,40 @@
 {
 	"name": "statusbar-quotes",
 	"displayName": "StatusBar Quotes",
-	"description": "blah",
-	"version": "0.0.1",
+	"description": "Here is a sentence to soothe your tired mind from programming.",
+	"icon": "https://raw.githubusercontent.com/kim-sardine/StatusBar-Quotes/master/assets/speech-balloon-ms.png",
+	"version": "0.2.0",
+	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"
 	},
 	"categories": [
 		"Other"
 	],
+	"keywords": [
+		"statusbar quote",
+		"statusbar",
+		"quotes",
+		"good quotes",
+		"wise saying"
+	],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kim-sardine/statusbar-quotes"
+	},
+	"bugs": {
+		"url": "https://github.com/kim-sardine/statusbar-quotes/issues",
+		"email": "kim-sardine@gmail.com"
+	},
+	"license": "SEE LICENSE IN LICENSE.md",
+	"galleryBanner": {
+		"color": "#C80000",
+		"theme": "dark"
+	},
+	"main": "./out/extension.js",
 	"activationEvents": [
 		"*"
 	],
-	"main": "./out/extension.js",
 	"contributes": {
 		"configuration": {
 			"title": "StatusBar Quotes",
@@ -49,19 +71,6 @@
 			}
 		]
 	},
-	"galleryBanner": {
-		"color": "#C80000",
-		"theme": "dark"
-	},
-	"keywords": [
-		"statusbar quote",
-		"statusbar",
-		"quote",
-		"quotes",
-		"good quote",
-		"good quotes",
-		"wise saying"
-	],
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
