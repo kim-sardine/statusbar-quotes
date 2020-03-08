@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(vscode.commands.registerCommand(constants.CMD_SHOW_QUOTE_ON_MODAL, () => {
-		vscode.window.showInformationMessage(quoter.quoteNow, {modal:true});
+		vscode.window.showInformationMessage(quoter.quoteNow);
 	}));
 	
 	const cmdSelectCatrgory = vscode.commands.registerCommand(constants.CMD_CHANGE_CATEGORY, async () => {

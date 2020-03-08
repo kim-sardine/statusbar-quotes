@@ -1,3 +1,9 @@
+### 0.3.1 (2020.03.08)
+
+- **Fix**: Disable modal on clicking status bar
+
+---
+
 ### 0.3.0 (2020.03.08)
 
 - **New**: Category : `Programming Quotes`

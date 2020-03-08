@@ -3,7 +3,7 @@
 	"displayName": "StatusBar Quotes",
 	"description": "Here is a sentence to soothe your tired mind from programming.",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"
