@@ -63,7 +63,7 @@ export function activate(context: vscode.ExtensionContext) {
 class Quoter {
 	private timeChangedEventEmitter = new vscode.EventEmitter<TimeChangedEventArgs>();
 	
-	readonly DISPLAY_TIME_IN_SEC = 5;
+	readonly DISPLAY_TIME_IN_SEC = 10;
 ​
 	private elapsedSeconds: number;
 	private quoteList: string[];
