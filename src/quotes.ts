@@ -151,7 +151,7 @@ const quotes: Quotes[] = [
         ],
     },
     {
-        category: constants.CATEGORY_PROGRAMMING_QUOTES,
+        category: constants.CATEGORY_PROGRAMMING,
         language: constants.LANG_ENGLISH,
         sentences: [
             "A common fallacy is to assume authors of incomprehensible code will be able to express themselves clearly in comments. - Kevlin Henney",
@@ -200,7 +200,7 @@ const quotes: Quotes[] = [
         ],
     },
     {
-        category: constants.CATEGORY_PROGRAMMING_QUOTES,
+        category: constants.CATEGORY_PROGRAMMING,
         language: constants.LANG_KOREAN,
         sentences: [
             "Boolean 이 좋은 것은 당신이 설령 잘못했더라도 한 비트만 바꾸면 된다는 것이다.",

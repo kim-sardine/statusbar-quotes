@@ -1,20 +1,27 @@
-### 0.3.1 (2020.03.08)
+# Changelog
 
-- **Fix**: Disable modal on clicking status bar
+## 0.3.2 (2020.03.09)
 
----
+### Fixes
 
-### 0.3.0 (2020.03.08)
+1. Rename Category `Programming Quotes` to `Programming`
+1. Show information about category and languate on tooltip
 
-- **New**: Category : `Programming Quotes`
+## 0.3.1 (2020.03.08)
 
-<!--  -->
+### Fixes
 
-- **Other**: Show warning message if category or language doesn't exist.
+1. Disable modal on clicking status bar
 
----
+## 0.3.0 (2020.03.08)
 
-### 0.2.0 (2020.03.08)
+### Enhancements
 
-- **New**: Category : `Wise Saying`
-- **New**: Language : `English`, `Korean`
+1. Add Category : `Programming Quotes` (english, korean)
+1. Show warning message if category or language doesn't exist.
+
+## 0.2.0 (2020.03.08)
+
+### Enhancements
+
+1. Add Category : `Wise Saying` (english, korean)

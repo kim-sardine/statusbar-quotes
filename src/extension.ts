@@ -5,7 +5,7 @@ import quotes from './quotes';
 
 const DISPLAY_TIME_IN_SEC = 10;
 
-const supportedCategory = [constants.CATEGORY_WISE_SAYING, constants.CATEGORY_PROGRAMMING_QUOTES];
+const supportedCategory = [constants.CATEGORY_WISE_SAYING, constants.CATEGORY_PROGRAMMING];
 const supportedLanguage = [constants.LANG_ENGLISH, constants.LANG_KOREAN];
 
 const defaultCategory = constants.CATEGORY_WISE_SAYING;
@@ -26,8 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
 	quoter.start();
 	quoter.onTimeChanged((args) => {
 		statusBarItem.text = args.wiseSayDisplay;
-		statusBarItem.tooltip = args.wiseSayDisplay;
-
+		statusBarItem.tooltip = `"${quoter.getCategory}" in "${quoter.getLanguage}"`;
 	});
 
 	context.subscriptions.push(vscode.commands.registerCommand(constants.CMD_SHOW_QUOTE_ON_MODAL, () => {
@@ -92,6 +91,14 @@ class Quoter {
 
 	get quoteNow(): string {
 		return this.quoteDisplay;
+	}
+
+	get getCategory(): string {
+		return this.category;
+	}
+
+	get getLanguage(): string {
+		return this.language;
 	}
 
 	private updateQuoteListAndChangeDisplay(): void {

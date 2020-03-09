@@ -1,9 +1,9 @@
 {
 	"name": "statusbar-quotes",
 	"displayName": "StatusBar Quotes",
-	"description": "Here is a sentence to soothe your tired mind from programming.",
+	"description": "Here's a heart-warming sentence to soothe your weary mind from programming...",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "0.3.1",
+	"version": "0.3.2",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"
@@ -44,7 +44,7 @@
 					"default": "Wise Saying",
 					"enum": [
 						"Wise Saying",
-						"Programming Quotes"
+						"Programming"
 					],
 					"enumDescriptions": [
 						"Get it together!",
