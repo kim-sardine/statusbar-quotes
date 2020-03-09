@@ -1,5 +1,11 @@
 # StatusBar Quotes for Visual Studio Code
 
+> Please share your life-quotes [here](https://github.com/kim-sardine/statusbar-quotes/issues)
+
+![StatusBar Quotes](https://raw.githubusercontent.com/kim-sardine/StatusBar-Quotes/master/assets/screenshot.gif)
+
+## Features
+
 - Categories
     - Supported
         - Wise saying
@@ -10,8 +16,6 @@
     - Supported
         - English
         - Korean
-
-![StatusBar Quotes](https://raw.githubusercontent.com/kim-sardine/StatusBar-Quotes/master/assets/screenshot.gif)
 
 ## Quotes from
 
