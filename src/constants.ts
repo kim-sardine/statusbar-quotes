@@ -11,5 +11,8 @@ export const CMD_CHANGE_CATEGORY: string = 'statusbar-quotes.change-category';
 export const CMD_CHANGE_LANGUAGE: string = 'statusbar-quotes.change-language';
 export const CMD_SHOW_QUOTE_ON_MODAL: string = 'statusbar-quotes.show-quote-on-modal';
 
+export const DEFAULT_DISPLAY_SECONDS: number = 10;
+
 export const SETTING_CATEGORY: string = 'statusbar-quotes.category';
 export const SETTING_LANGUAGE: string = 'statusbar-quotes.language';
+export const SETTING_DISPLAY_SECONDS: string = 'statusbar-quotes.display-seconds';

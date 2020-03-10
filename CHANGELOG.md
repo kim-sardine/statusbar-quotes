@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0 (2020.03.10)
+
+### Enhancements
+
+1. Add new configuration : `Display seconds`. you can set display interval.
+
 ## 0.3.2 (2020.03.09)
 
 ### Fixes
@@ -17,11 +23,11 @@
 
 ### Enhancements
 
-1. Add Category : `Programming Quotes` (english, korean)
+1. Add new category : `Programming Quotes` (english, korean)
 1. Show warning message if category or language doesn't exist.
 
 ## 0.2.0 (2020.03.08)
 
 ### Enhancements
 
-1. Add Category : `Wise Saying` (english, korean)
+1. Add new category : `Wise Saying` (english, korean)

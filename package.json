@@ -3,7 +3,7 @@
 	"displayName": "StatusBar Quotes",
 	"description": "Here's a heart-warming sentence to soothe your weary mind from programming...",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "0.3.2",
+	"version": "0.4.0",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"
@@ -48,13 +48,19 @@
 					],
 					"enumDescriptions": [
 						"Get it together!",
-						"May the Force be with you"
+						"May the Force be with you.."
 					]
 				},
 				"statusbar-quotes.language": {
 					"type": "string",
 					"default": "English",
 					"enum": ["English", "Korean"]
+				},
+				"statusbar-quotes.display-seconds": {
+					"type": "number",
+					"default": 10,
+					"enum": [5, 10, 20, 30, 40, 50, 60],
+					"description": "How many seconds do you want the quote to change?"
 				}
 			}
 		},

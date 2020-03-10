@@ -3,13 +3,13 @@ import * as vscode from 'vscode';
 import * as constants from './constants';
 import quotes from './quotes';
 
-const DISPLAY_TIME_IN_SEC = 10;
 
 const supportedCategory = [constants.CATEGORY_WISE_SAYING, constants.CATEGORY_PROGRAMMING];
 const supportedLanguage = [constants.LANG_ENGLISH, constants.LANG_KOREAN];
 
 const defaultCategory = constants.CATEGORY_WISE_SAYING;
 const defaultLanguage = constants.LANG_ENGLISH;
+const defaultDisplaySeconds = constants.DEFAULT_DISPLAY_SECONDS;
 
 
 export function activate(context: vscode.ExtensionContext) {
@@ -19,9 +19,10 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(statusBarItem);
 ​
 
-	let initial_category: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", defaultCategory);
-	let initial_language: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("language", defaultLanguage);
-	const quoter = new Quoter(initial_category, initial_language);
+	let initialCategory: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", defaultCategory);
+	let initialLanguage: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("language", defaultLanguage);
+	let initialDisplaySeconds: number = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("display-seconds", defaultDisplaySeconds);
+	const quoter = new Quoter(initialCategory, initialLanguage, initialDisplaySeconds);
 
 	quoter.start();
 	quoter.onTimeChanged((args) => {
@@ -53,12 +54,16 @@ export function activate(context: vscode.ExtensionContext) {
 ​
 	const onConfigurationChanged = vscode.workspace.onDidChangeConfiguration((event) => {
 		if (event.affectsConfiguration(constants.SETTING_CATEGORY)) {
-			let changed_category: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", defaultCategory);
-			quoter.setCategory(changed_category);
+			let newCategory: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", defaultCategory);
+			quoter.setCategory(newCategory);
 		}
 		else if (event.affectsConfiguration(constants.SETTING_LANGUAGE)) {
-			let changed_language: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("language", defaultLanguage);
-			quoter.setLanguage(changed_language);
+			let newLanguage: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("language", defaultLanguage);
+			quoter.setLanguage(newLanguage);
+		}
+		else if (event.affectsConfiguration(constants.SETTING_DISPLAY_SECONDS)) {
+			let newDisplaySeconds: number = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("display-seconds", defaultDisplaySeconds);
+			quoter.setDisplaySeconds(newDisplaySeconds);
 		}
 	});
 	context.subscriptions.push(onConfigurationChanged);
@@ -68,19 +73,19 @@ export function activate(context: vscode.ExtensionContext) {
 class Quoter {
 	private timeChangedEventEmitter = new vscode.EventEmitter<TimeChangedEventArgs>();
 ​
-	private elapsedSeconds: number;
-	private quoteList: string[];
-	private quoteDisplay: string;
+	private elapsedSeconds: number = 0;
+	private quoteList: string[] = [];
+	private quoteDisplay: string = '';
+	private interval: NodeJS.Timer | undefined;
+
 	private category: string;
 	private language: string;
-	private interval: NodeJS.Timer | undefined;
-​
-	constructor(initial_category: string, initial_language: string) {
-		this.elapsedSeconds = 0;
-		this.category = initial_category;
-		this.language = initial_language;
-		this.quoteList = [];
-		this.quoteDisplay = '';
+	private displaySeconds: number;
+
+	constructor(initialCategory: string, initialLanguage: string, initialDisplaySeconds: number) {
+		this.category = initialCategory;
+		this.language = initialLanguage;
+		this.displaySeconds = initialDisplaySeconds;
 				​
 		this.updateQuoteListAndChangeDisplay();
 	}
@@ -129,7 +134,7 @@ class Quoter {
 	}
 
 	private tick() {
-		if (this.elapsedSeconds >= DISPLAY_TIME_IN_SEC) {
+		if (this.elapsedSeconds >= this.displaySeconds) {
 			this.elapsedSeconds = 0;
 			
 			var quote = this.quoteList[Math.floor(Math.random() * this.quoteList.length)];
@@ -150,10 +155,13 @@ class Quoter {
 		this.updateQuoteListAndChangeDisplay();
 	}
 ​
-	​
 	public setCategory(category: string) {
 		this.category = category;
 		this.updateQuoteListAndChangeDisplay();
+	}
+​
+	public setDisplaySeconds(displaySeconds: number) {
+		this.displaySeconds = displaySeconds;
 	}
 }
 ​
