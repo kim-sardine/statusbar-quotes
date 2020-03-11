@@ -22,6 +22,8 @@
 - Wise saying
     - https://www.inc.com/lolly-daskal/100-motivational-quotes-that-will-inspire-you-to-succeed.html
     - http://www.heartsaying.com/archives/3807
+    - https://brunch.co.kr/@jade/367
+    - http://www.heartsaying.com/archives/3974
 - Programming
     - https://dzone.com/articles/more-good-programmingquotes
     - https://www.goodreads.com/quotes/tag/programming
