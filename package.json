@@ -12,11 +12,11 @@
 		"Other"
 	],
 	"keywords": [
-		"statusbar quote",
 		"statusbar",
-		"quotes",
+		"status bar",
+		"life quotes",
 		"good quotes",
-		"wise saying"
+		"quotes"
 	],
     "repository": {
         "type": "git",
@@ -59,7 +59,7 @@
 				"statusbar-quotes.display-seconds": {
 					"type": "number",
 					"default": 10,
-					"enum": [5, 10, 20, 30, 40, 50, 60],
+					"enum": [5, 10, 15, 20, 30, 60],
 					"description": "How many seconds do you want the quote to change?"
 				}
 			}
