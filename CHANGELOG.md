@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1 (2020.03.11)
+
+### Enhancements
+
+1. Add quotes : `Wise Saying` (korean)
+
 ## 0.4.0 (2020.03.10)
 
 ### Enhancements
