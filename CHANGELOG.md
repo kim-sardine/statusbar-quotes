@@ -1,10 +1,17 @@
 # Changelog
 
+## 0.5.0 (2020.03.12)
+
+### Enhancements
+
+1. Divide quote file by category
+1. Update main gif
+
 ## 0.4.1 (2020.03.11)
 
 ### Enhancements
 
-1. Add quotes : `Wise Saying` (korean)
+1. Add more quotes : `Wise Saying` (korean)
 
 ## 0.4.0 (2020.03.10)
 
