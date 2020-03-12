@@ -1,7 +1,7 @@
 ​
 import * as vscode from 'vscode';
 import * as constants from './constants';
-import quotes from './quotes';
+import * as QUOTES from './quotes/index';
 
 
 const supportedCategory = [constants.CATEGORY_WISE_SAYING, constants.CATEGORY_PROGRAMMING];
@@ -112,14 +112,21 @@ class Quoter {
 	}
 
 	private loadQuotes(): string[] {
-		for (const quote of quotes) {
-			if ( this.category === quote.category && this.language === quote.language) {
-				return quote.sentences;
+		const parsedCurrentCategory = this.category.toLowerCase().replace(/ /g,"_");
+		for (const [category, quotesByCategory] of Object.entries(QUOTES)) {
+			if (parsedCurrentCategory === category) {
+				for (let quote of quotesByCategory) {
+					if (quote.language === this.language) {
+						return quote.sentences;
+					}
+				}
 			}
 		}
+
 		vscode.window.showWarningMessage(`sorry, "${this.category}" in "${this.language}" is not supported now`);
-		return quotes[0].sentences;
+		return QUOTES.wise_saying[0].sentences;
 	}
+
 
 	private setQuoteDisplay(quote: string): void {
 		this.quoteDisplay = quote;
