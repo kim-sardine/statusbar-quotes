@@ -3,7 +3,7 @@
 	"displayName": "StatusBar Quotes",
 	"description": "Here's a heart-warming sentence to soothe your weary mind from programming...",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"
