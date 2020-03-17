@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.2 (2020.03.17)
+
+### Enhancements
+
+1. Update quotes : `Programming` (english, korean)
+
 ## 0.5.1 (2020.03.13)
 
 ### Enhancements
