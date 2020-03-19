@@ -2,9 +2,10 @@ export const EXTENSION_ID: string = 'statusbar-quotes';
 
 export const DEFAULT_DISPLAY_SECONDS: number = 10;
 
-export const CATEGORY_HUMOR: string = 'Humor';
+export const CATEGORY_ALL: string = 'All';
 export const CATEGORY_WISE_SAYING: string = 'Wise Saying';
 export const CATEGORY_PROGRAMMING: string = 'Programming';
+export const CATEGORY_HUMOR: string = 'Humor';
 
 export const LANG_KOREAN: string = 'Korean';
 export const LANG_ENGLISH: string = 'English';

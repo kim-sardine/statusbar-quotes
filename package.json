@@ -3,7 +3,7 @@
 	"displayName": "StatusBar Quotes",
 	"description": "Here's a heart-warming sentence to soothe your weary mind from programming...",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "0.5.2",
+	"version": "0.6.0",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"
@@ -41,8 +41,9 @@
 			"properties": {
 				"statusbar-quotes.category": {
 					"type": "string",
-					"default": "Wise Saying",
+					"default": "All",
 					"enum": [
+						"All",
 						"Wise Saying",
 						"Programming"
 					],
