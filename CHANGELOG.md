@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0 (2020.03.19)
+
+### Enhancements
+
+1. Add new category : `All` (Combine all categories)
+
+### Fixes
+
+1. Select first quote randomly.
+
 ## 0.5.2 (2020.03.17)
 
 ### Enhancements

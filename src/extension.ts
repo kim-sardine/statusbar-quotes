@@ -4,10 +4,10 @@ import * as constants from './constants';
 import * as QUOTES from './quotes/index';
 
 
-const supportedCategory = [constants.CATEGORY_WISE_SAYING, constants.CATEGORY_PROGRAMMING];
+const supportedCategory = [constants.CATEGORY_ALL, constants.CATEGORY_WISE_SAYING, constants.CATEGORY_PROGRAMMING];
 const supportedLanguage = [constants.LANG_ENGLISH, constants.LANG_KOREAN];
 
-const defaultCategory = constants.CATEGORY_WISE_SAYING;
+const defaultCategory = constants.CATEGORY_ALL;
 const defaultLanguage = constants.LANG_ENGLISH;
 const defaultDisplaySeconds = constants.DEFAULT_DISPLAY_SECONDS;
 
@@ -106,18 +106,36 @@ class Quoter {
 		return this.language;
 	}
 
+	private getRandomQuoteFromQuoteList() {
+		return this.quoteList[Math.floor(Math.random() * this.quoteList.length)];
+	}
+
 	private updateQuoteListAndChangeDisplay(): void {
 		this.quoteList = this.loadQuotes();
-		this.setQuoteDisplay(this.quoteList[0]);
+		this.setQuoteDisplay(this.getRandomQuoteFromQuoteList());
 	}
 
 	private loadQuotes(): string[] {
-		const parsedCurrentCategory = this.category.toLowerCase().replace(/ /g,"_");
-		for (const [category, quotesByCategory] of Object.entries(QUOTES)) {
-			if (parsedCurrentCategory === category) {
+		
+		if (this.category === constants.CATEGORY_ALL) {
+			let sentences: string[] = [];
+			for (const [category, quotesByCategory] of Object.entries(QUOTES)) {
 				for (let quote of quotesByCategory) {
 					if (quote.language === this.language) {
-						return quote.sentences;
+						sentences = [...sentences, ...quote.sentences];
+					}
+				}
+			}
+			return sentences;
+		}
+		else {
+			const parsedCurrentCategory = this.category.toLowerCase().replace(/ /g,"_");
+			for (const [category, quotesByCategory] of Object.entries(QUOTES)) {
+				if (parsedCurrentCategory === category) {
+					for (let quote of quotesByCategory) {
+						if (quote.language === this.language) {
+							return quote.sentences;
+						}
 					}
 				}
 			}
@@ -143,9 +161,8 @@ class Quoter {
 	private tick() {
 		if (this.elapsedSeconds >= this.displaySeconds) {
 			this.elapsedSeconds = 0;
-			
-			var quote = this.quoteList[Math.floor(Math.random() * this.quoteList.length)];
-			this.setQuoteDisplay(quote);
+
+			this.setQuoteDisplay(this.getRandomQuoteFromQuoteList());
 		}
 		this.elapsedSeconds += 1;
 		this.fireTimeChangedEvent(this.elapsedSeconds, this.quoteDisplay);
