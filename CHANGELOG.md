@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.1 (2020.03.21)
+
+### Fixes
+
+1. Fix enum description for catrgory `All`.
+
 ## 0.6.0 (2020.03.19)
 
 ### Enhancements

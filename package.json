@@ -3,7 +3,7 @@
 	"displayName": "StatusBar Quotes",
 	"description": "Here's a heart-warming sentence to soothe your weary mind from programming...",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "0.6.0",
+	"version": "0.6.1",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"
@@ -13,7 +13,7 @@
 	],
 	"keywords": [
 		"status bar quote",
-		"statusbar",
+		"status bar",
 		"life quotes",
 		"good quotes",
 		"quotes"
@@ -48,6 +48,7 @@
 						"Programming"
 					],
 					"enumDescriptions": [
+						"",
 						"Mindfulness..",
 						"May the Force be with you.."
 					]
