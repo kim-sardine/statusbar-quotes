@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.0 (2020.05.17)
+
+### Enhancements
+
+1. You can set `quote display time interval` (=display seconds) up to 1 hour.
+1. You can set `display seconds` to `0` to not change quote.
+
 ## 0.6.1 (2020.03.21)
 
 ### Fixes

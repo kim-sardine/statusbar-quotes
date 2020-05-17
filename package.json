@@ -3,7 +3,7 @@
 	"displayName": "StatusBar Quotes",
 	"description": "Here's a heart-warming sentence to soothe your weary mind from programming...",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "0.6.1",
+	"version": "0.7.0",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"
@@ -59,10 +59,11 @@
 					"enum": ["English", "Korean"]
 				},
 				"statusbar-quotes.display-seconds": {
-					"type": "number",
-					"default": 10,
-					"enum": [5, 10, 15, 20, 30, 60],
-					"description": "How many seconds do you want the quote to change?"
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 86400,
+					"default": 15,
+					"markdownDescription": "How many seconds do you want the quote to be changed? &ast; range : 0 *(do not change quote)* ~ 86400 *(1 hour)*"
 				}
 			}
 		},
@@ -75,6 +76,11 @@
 			{
 				"command": "statusbar-quotes.change-category",
 				"title": "Change category",
+				"category": "StatusBar Quote"
+			},
+			{
+				"command": "statusbar-quotes.change-display-seconds",
+				"title": "Change display seconds",
 				"category": "StatusBar Quote"
 			}
 		]

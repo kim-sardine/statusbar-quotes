@@ -34,23 +34,45 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage(quoter.quoteNow);
 	}));
 	
-	const cmdSelectCatrgory = vscode.commands.registerCommand(constants.CMD_CHANGE_CATEGORY, async () => {
+	// Settings
+	const cmdChangeCatrgory = vscode.commands.registerCommand(constants.CMD_CHANGE_CATEGORY, async () => {
 		let category = await vscode.window.showQuickPick(supportedCategory, { placeHolder: `Select category` });
 		if (!category) { return; }
 ​
 		await vscode.workspace.getConfiguration(constants.EXTENSION_ID).update("category", category, true);
 		quoter.setCategory(category);
 	});
-	context.subscriptions.push(cmdSelectCatrgory);
+	context.subscriptions.push(cmdChangeCatrgory);
 ​
-	const cmdSelectLanguage = vscode.commands.registerCommand(constants.CMD_CHANGE_LANGUAGE, async () => {
+	const cmdChangeLanguage = vscode.commands.registerCommand(constants.CMD_CHANGE_LANGUAGE, async () => {
 		let language = await vscode.window.showQuickPick(supportedLanguage, { placeHolder: `Select Language` });
 		if (!language) { return; }
 ​
 		await vscode.workspace.getConfiguration(constants.EXTENSION_ID).update("language", language, true);
 		quoter.setLanguage(language);
 	});
-	context.subscriptions.push(cmdSelectLanguage);
+	context.subscriptions.push(cmdChangeLanguage);
+​
+	const cmdChangeDisplaySeconds = vscode.commands.registerCommand(constants.CMD_CHANGE_DISPLAY_SECONDS, async () => {
+		let display_seconds = await vscode.window.showInputBox(
+			{
+				prompt: 'Quote change time interval (seconds)', 
+				placeHolder: `Range : 0 (do not change quote) ~ ${constants.MAXIMUM_DISPLAY_SECONDS} (${constants.MAXIMUM_DISPLAY_SECONDS_HUMANIZE})`
+			}
+		);
+		if (!display_seconds || isNaN(parseInt(display_seconds))) {
+			vscode.window.showWarningMessage(`You can only enter number between 0 and ${constants.MAXIMUM_DISPLAY_SECONDS}`);
+			return; 
+		}
+
+		let _display_seconds: number = parseInt(display_seconds);
+		if (_display_seconds > constants.MAXIMUM_DISPLAY_SECONDS) {
+			_display_seconds = constants.MAXIMUM_DISPLAY_SECONDS;
+		}
+​
+		await vscode.workspace.getConfiguration(constants.EXTENSION_ID).update("display-seconds", _display_seconds, true);
+	});
+	context.subscriptions.push(cmdChangeDisplaySeconds);
 ​
 	const onConfigurationChanged = vscode.workspace.onDidChangeConfiguration((event) => {
 		if (event.affectsConfiguration(constants.SETTING_CATEGORY)) {
@@ -62,6 +84,7 @@ export function activate(context: vscode.ExtensionContext) {
 			quoter.setLanguage(newLanguage);
 		}
 		else if (event.affectsConfiguration(constants.SETTING_DISPLAY_SECONDS)) {
+			// TODO: Validation
 			let newDisplaySeconds: number = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("display-seconds", defaultDisplaySeconds);
 			quoter.setDisplaySeconds(newDisplaySeconds);
 		}
@@ -159,12 +182,16 @@ class Quoter {
 	}
 
 	private tick() {
+		if (this.displaySeconds === 0) {  // display only one quote.
+			this.fireTimeChangedEvent(this.elapsedSeconds, this.quoteDisplay);
+			return;
+		}
+		
+		this.elapsedSeconds += 1;
 		if (this.elapsedSeconds >= this.displaySeconds) {
 			this.elapsedSeconds = 0;
-
 			this.setQuoteDisplay(this.getRandomQuoteFromQuoteList());
 		}
-		this.elapsedSeconds += 1;
 		this.fireTimeChangedEvent(this.elapsedSeconds, this.quoteDisplay);
 	}
 
