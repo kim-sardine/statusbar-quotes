@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import * as constants from './constants';
-import * as QUOTES from './quotes/index';
+import * as constants from '../constants';
+import * as QUOTES from '../quotes/index';
 
 
 class Quoter {

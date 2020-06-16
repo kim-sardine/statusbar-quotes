@@ -1,5 +1,5 @@
 import * as constants from '../constants';
-import Quotes from '../interface';
+import Quotes from '../models/quotes';
 
 const data: Quotes[] = [
     {
