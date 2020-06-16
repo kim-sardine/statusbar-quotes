@@ -1,7 +1,7 @@
 {
 	"name": "statusbar-quotes",
 	"displayName": "StatusBar Quotes",
-	"description": "Here's a heart-warming sentence to soothe your weary mind from programming...",
+	"description": "Here are some quotes that will warm your poor mind tired of programming...",
 	"icon": "assets/speech-balloon-ms.png",
 	"version": "0.7.0",
 	"publisher": "kim-sardine",
