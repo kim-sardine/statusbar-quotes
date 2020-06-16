@@ -22,7 +22,7 @@
 - You can change `quote display time interval`
     - The unit is `seconds`.
     - Range from 0 to 86400 (1 hour)
-    - set `0` if you want to see only one quote.
+    - set to `0` if you want to see only one quote.
 - You can change `language`
 - You can change `category of quote`
 
