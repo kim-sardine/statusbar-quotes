@@ -104,7 +104,9 @@ const data: Quotes[] = [
             "You measure the size of the accomplishment by the obstacles you had to overcome to reach your goals. - Booker T. Washington",
             "You must expect great things of yourself before you can do them. - Michael Jordan",
             "Your problem isn't the problem. Your reaction is the problem. - Anonymous",
-            "You've got to get up every morning with determination if you're going to go to bed with satisfaction. - George Lorimer",          ]
+            "You've got to get up every morning with determination if you're going to go to bed with satisfaction. - George Lorimer",
+        ],
+        type: constants.QUOTE_TYPE_PLAIN
     },
     {
         language: constants.LANG_KOREAN,
@@ -157,7 +159,8 @@ const data: Quotes[] = [
             "항상 갈구하라. 바보짓을 두려워마라. - 스티브 잡스",
             "현재와 미래는 어떻게든 연결되어 있다 - 스티브 잡스",
             "휴식은 게으름도, 멈춤도 아니다. - 헨리 포드",
-        ]
+        ],
+        type: constants.QUOTE_TYPE_PLAIN
     }
 ];
 

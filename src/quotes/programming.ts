@@ -45,6 +45,7 @@ const data: Quotes[] = [
             "when you don't create things, you become defined by your tastes rather than ability. your tastes only narrow & exclude people. so create. - Why The Lucky Stiff",
             "Your code might be perfect but you aren't",
         ],
+        type: constants.QUOTE_TYPE_PLAIN
     },
     {
         language: constants.LANG_KOREAN,
@@ -84,6 +85,7 @@ const data: Quotes[] = [
             "형편없는 프로그래머가 언어를 탓한다.",
             "훌륭한 코드는 훌륭한 문서보다 낫다. - Steve McConnell",
         ],
+        type: constants.QUOTE_TYPE_PLAIN
     }
 ];
 
