@@ -44,8 +44,7 @@ const data: Quotes[] = [
             "Walking on water and developing software from a specification are easy if both are frozen. - Edward V. Berard",
             "when you don't create things, you become defined by your tastes rather than ability. your tastes only narrow & exclude people. so create. - Why The Lucky Stiff",
             "Your code might be perfect but you aren't",
-        ],
-        type: constants.QUOTE_TYPE_PLAIN
+        ]
     },
     {
         language: constants.LANG_KOREAN,
@@ -84,8 +83,7 @@ const data: Quotes[] = [
             "항상 이런 생각으로 개발에 임하라. '내 소스를 유지보수하게 되는 개발자가 내가 어디 살고 있는지 알고 있는 과격한 사이코패스일 것이다.' - Martin Golding",
             "형편없는 프로그래머가 언어를 탓한다.",
             "훌륭한 코드는 훌륭한 문서보다 낫다. - Steve McConnell",
-        ],
-        type: constants.QUOTE_TYPE_PLAIN
+        ]
     }
 ];
 

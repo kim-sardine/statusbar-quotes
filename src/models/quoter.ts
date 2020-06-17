@@ -78,7 +78,6 @@ class Quoter {
 		return QUOTES.wise_saying[0].sentences;
 	}
 
-
 	private setQuoteDisplay(quote: string): void {
 		this.quoteDisplay = `$(quote) ${quote}`;
 	}
