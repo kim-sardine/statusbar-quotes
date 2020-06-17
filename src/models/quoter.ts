@@ -87,7 +87,7 @@ class Quoter {
 	}
 
 	private setQuoteDisplay(quote: string): void {
-		this.quoteDisplay = `$(quote) ${quote}`;
+		this.quoteDisplay = quote;
 	}
 ​
 	private fireTimeChangedEvent(elapsedSeconds: number, wiseSayDisplay: string): void {

@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	quoter.start();
 	quoter.onTimeChanged((args) => {
-		statusBarItem.text = args.wiseSayDisplay;
+		statusBarItem.text = `$(quote) ${args.wiseSayDisplay}`;
 		statusBarItem.tooltip = `"${quoter.getCategory}" in "${quoter.getLanguage}"`;
 	});
 
