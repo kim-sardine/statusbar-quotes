@@ -12,10 +12,17 @@ const defaultDisplaySeconds = constants.DEFAULT_DISPLAY_SECONDS;
 
 
 export function activate(context: vscode.ExtensionContext) {
-	const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+	const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 2);
 	statusBarItem.show();
 	statusBarItem.command = constants.CMD_SHOW_QUOTE_ON_MODAL;
 	context.subscriptions.push(statusBarItem);
+	​
+	const statusBarItemforShuffle = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
+	statusBarItemforShuffle.show();
+	statusBarItemforShuffle.text = '$(search-refresh)';
+	statusBarItemforShuffle.tooltip = 'Shuffle Quotes';
+	statusBarItemforShuffle.command = constants.CMD_SHUFFLE_QUOTES;
+	context.subscriptions.push(statusBarItemforShuffle);
 ​
 
 	let initialCategory: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", defaultCategory);
@@ -51,7 +58,7 @@ export function activate(context: vscode.ExtensionContext) {
 		quoter.setLanguage(language);
 	});
 	context.subscriptions.push(cmdChangeLanguage);
-​
+	​
 	const cmdChangeDisplaySeconds = vscode.commands.registerCommand(constants.CMD_CHANGE_DISPLAY_SECONDS, async () => {
 		let display_seconds = await vscode.window.showInputBox(
 			{
@@ -63,15 +70,21 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showWarningMessage(`You can only enter number between 0 and ${constants.MAXIMUM_DISPLAY_SECONDS}`);
 			return; 
 		}
-
+		
 		let _display_seconds: number = parseInt(display_seconds);
 		if (_display_seconds > constants.MAXIMUM_DISPLAY_SECONDS) {
 			_display_seconds = constants.MAXIMUM_DISPLAY_SECONDS;
 		}
-​
+		​
 		await vscode.workspace.getConfiguration(constants.EXTENSION_ID).update("display-seconds", _display_seconds, true);
 	});
 	context.subscriptions.push(cmdChangeDisplaySeconds);
+	​
+	const cmdShuffleQuotes = vscode.commands.registerCommand(constants.CMD_SHUFFLE_QUOTES, async () => {
+		quoter.initElapsedSeconds();
+		quoter.displayRandomQuote();
+	});
+	context.subscriptions.push(cmdShuffleQuotes);
 ​
 	const onConfigurationChanged = vscode.workspace.onDidChangeConfiguration((event) => {
 		if (event.affectsConfiguration(constants.SETTING_CATEGORY)) {

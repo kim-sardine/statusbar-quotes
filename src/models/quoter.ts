@@ -39,13 +39,21 @@ class Quoter {
 		return this.language;
 	}
 
-	private getRandomQuoteFromQuoteList() {
+	public displayRandomQuote(): void {
+		this.setQuoteDisplay(this.getRandomQuoteFromQuoteList());
+	}
+
+	public initElapsedSeconds(): void {
+		this.elapsedSeconds = 0;
+	}
+
+	private getRandomQuoteFromQuoteList(): string {
 		return this.quoteList[Math.floor(Math.random() * this.quoteList.length)];
 	}
 
 	private updateQuoteListAndChangeDisplay(): void {
 		this.quoteList = this.loadQuotes();
-		this.setQuoteDisplay(this.getRandomQuoteFromQuoteList());
+		this.displayRandomQuote();
 	}
 
 	private loadQuotes(): string[] {
@@ -99,7 +107,7 @@ class Quoter {
 		this.elapsedSeconds += 1;
 		if (this.elapsedSeconds >= this.displaySeconds) {
 			this.elapsedSeconds = 0;
-			this.setQuoteDisplay(this.getRandomQuoteFromQuoteList());
+			this.displayRandomQuote();
 		}
 		this.fireTimeChangedEvent(this.elapsedSeconds, this.quoteDisplay);
 	}

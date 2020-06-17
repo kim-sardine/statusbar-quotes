@@ -16,6 +16,7 @@ export const CMD_CHANGE_CATEGORY: string = `${EXTENSION_ID}.change-category`;
 export const CMD_CHANGE_LANGUAGE: string = `${EXTENSION_ID}.change-language`;
 export const CMD_CHANGE_DISPLAY_SECONDS: string = `${EXTENSION_ID}.change-display-seconds`;
 export const CMD_SHOW_QUOTE_ON_MODAL: string = `${EXTENSION_ID}.show-quote-on-modal`;
+export const CMD_SHUFFLE_QUOTES: string = `${EXTENSION_ID}.shuffle-quotes`;
 
 export const SETTING_CATEGORY: string = `${EXTENSION_ID}.category`;
 export const SETTING_LANGUAGE: string = `${EXTENSION_ID}.language`;
