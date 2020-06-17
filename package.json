@@ -3,7 +3,7 @@
 	"displayName": "StatusBar Quotes",
 	"description": "Here are some quotes that will warm your poor mind tired of programming...",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "0.7.0",
+	"version": "0.8.0",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"
@@ -63,7 +63,7 @@
 					"minimum": 0,
 					"maximum": 86400,
 					"default": 15,
-					"markdownDescription": "How many seconds do you want the quote to be changed? &ast; range : 0 *(do not change quote)* ~ 86400 *(1 hour)*"
+					"markdownDescription": "How many seconds do you want the quote to be changed?\n\n range : 0 *(do not change quote)* ~ 86400 *(1 hour)*"
 				}
 			}
 		},
