@@ -10,8 +10,9 @@
     - Supported
         - Wise saying
         - Programming
+        - Startup
     - Coming Soon
-        - Humor
+        - ??
 - Languages
     - Supported
         - English
@@ -40,3 +41,8 @@
     - https://okky.kr/article/463386?note=1437458
     - http://m.todayhumor.co.kr/view.php?table=humorbest&no=1154153
     - https://blog.fupfin.com/?p=11
+- Startup
+    - http://somedaybiz.com/1964
+    - https://onlinebiz.kr/창업자가-기억해야-할-격언-100가지/
+    - https://www.forbes.com/sites/allbusiness/2014/02/10/50-inspirational-quotes-for-startups-and-entrepreneurs/#4c3c18c6ef05
+    - https://kaushalrajpopat.wordpress.com/2012/08/20/series-i-of-inspiring-entrepreneur-startup-quotes/

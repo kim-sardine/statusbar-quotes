@@ -45,12 +45,14 @@
 					"enum": [
 						"All",
 						"Wise Saying",
-						"Programming"
+						"Programming",
+						"Startup"
 					],
 					"enumDescriptions": [
 						"",
-						"Mindfulness..",
-						"May the Force be with you.."
+						"Mindfulness",
+						"May the Force be with you..",
+						"Inspirational quotes for startups"
 					]
 				},
 				"statusbar-quotes.language": {

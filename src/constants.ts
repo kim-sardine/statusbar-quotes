@@ -7,7 +7,7 @@ export const MAXIMUM_DISPLAY_SECONDS_HUMANIZE: string = '1 hour';
 export const CATEGORY_ALL: string = 'All';
 export const CATEGORY_WISE_SAYING: string = 'Wise Saying';
 export const CATEGORY_PROGRAMMING: string = 'Programming';
-export const CATEGORY_HUMOR: string = 'Humor';
+export const CATEGORY_STARTUP: string = 'Startup';
 
 export const LANG_KOREAN: string = 'Korean';
 export const LANG_ENGLISH: string = 'English';
