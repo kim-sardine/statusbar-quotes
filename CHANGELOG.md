@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.2 (2020.06.28)
+
+1. Add new category : `Startup` (Inspiring quotes for startups)
+1. Update quotes : `Wise Saying` (Change words, Delete some quotes)
+1. Update main gif.
+
 ## 0.8.0 (2020.06.18)
 
 1. You can shuffle quotes by clicking refresh button next to statusbar quote.
