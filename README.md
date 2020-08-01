@@ -46,3 +46,8 @@
     - https://onlinebiz.kr/창업자가-기억해야-할-격언-100가지/
     - https://www.forbes.com/sites/allbusiness/2014/02/10/50-inspirational-quotes-for-startups-and-entrepreneurs/#4c3c18c6ef05
     - https://kaushalrajpopat.wordpress.com/2012/08/20/series-i-of-inspiring-entrepreneur-startup-quotes/
+    - https://www.thearthunters.com
+
+## You may also like
+
+- [Flashcards](https://marketplace.visualstudio.com/items?itemName=kim-sardine.flashcards)

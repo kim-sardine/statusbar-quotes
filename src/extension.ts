@@ -20,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
 	const statusBarItemforShuffle = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
 	statusBarItemforShuffle.show();
 	statusBarItemforShuffle.text = '$(search-refresh)';
-	statusBarItemforShuffle.tooltip = 'Shuffle Quotes';
+	statusBarItemforShuffle.tooltip = 'Click to get a new quote';
 	statusBarItemforShuffle.command = constants.CMD_SHUFFLE_QUOTES;
 	context.subscriptions.push(statusBarItemforShuffle);
 ​

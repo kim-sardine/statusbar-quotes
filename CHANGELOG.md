@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.4 (2020.08.02)
+
+1. Update quotes : `Startup` (Add more quotes)
+
 ## 0.8.2 (2020.06.28)
 
 1. Add new category : `Startup` (Inspiring quotes for startups)
