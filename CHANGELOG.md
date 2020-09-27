@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.5 (2020.09.27)
+
+1. Update quotes : `Startup`, `Wise Saying`, `Programming`
+
 ## 0.8.4 (2020.08.02)
 
 1. Update quotes : `Startup` (Add more quotes)
