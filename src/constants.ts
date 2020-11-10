@@ -21,3 +21,4 @@ export const CMD_SHUFFLE_QUOTES: string = `${EXTENSION_ID}.shuffle-quotes`;
 export const SETTING_CATEGORY: string = `${EXTENSION_ID}.category`;
 export const SETTING_LANGUAGE: string = `${EXTENSION_ID}.language`;
 export const SETTING_DISPLAY_SECONDS: string = `${EXTENSION_ID}.display-seconds`;
+export const SETTING_DISPLAY_SHUFFLE_BUTTON: string = `${EXTENSION_ID}.display-shuffle-button`;

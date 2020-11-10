@@ -9,18 +9,19 @@ const supportedLanguage = [constants.LANG_ENGLISH, constants.LANG_KOREAN];
 const defaultCategory = constants.CATEGORY_ALL;
 const defaultLanguage = constants.LANG_ENGLISH;
 const defaultDisplaySeconds = constants.DEFAULT_DISPLAY_SECONDS;
+const defaultDisplayShuffleButton = true;
 
 
 export function activate(context: vscode.ExtensionContext) {
-	const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 2);
+	const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
 	statusBarItem.show();
 	statusBarItem.command = constants.CMD_SHOW_QUOTE_ON_MODAL;
 	context.subscriptions.push(statusBarItem);
 	​
-	const statusBarItemforShuffle = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
+	const statusBarItemforShuffle = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 2);
 	statusBarItemforShuffle.show();
 	statusBarItemforShuffle.text = '$(search-refresh)';
-	statusBarItemforShuffle.tooltip = 'Click to get a new quote';
+	statusBarItemforShuffle.tooltip = 'Click to get new quotes';
 	statusBarItemforShuffle.command = constants.CMD_SHUFFLE_QUOTES;
 	context.subscriptions.push(statusBarItemforShuffle);
 ​
@@ -28,7 +29,12 @@ export function activate(context: vscode.ExtensionContext) {
 	let initialCategory: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("category", defaultCategory);
 	let initialLanguage: string = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("language", defaultLanguage);
 	let initialDisplaySeconds: number = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("display-seconds", defaultDisplaySeconds);
+	let initialDisplayShuffleButton: boolean = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("display-shuffle-button", defaultDisplayShuffleButton);
+
 	const quoter = new Quoter(initialCategory, initialLanguage, initialDisplaySeconds);
+	if (initialDisplayShuffleButton) {
+		statusBarItemforShuffle.show();
+	}
 
 	quoter.start();
 	quoter.onTimeChanged((args) => {
@@ -99,6 +105,14 @@ export function activate(context: vscode.ExtensionContext) {
 			// TODO: Validation
 			let newDisplaySeconds: number = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("display-seconds", defaultDisplaySeconds);
 			quoter.setDisplaySeconds(newDisplaySeconds);
+		}
+		else if (event.affectsConfiguration(constants.SETTING_DISPLAY_SHUFFLE_BUTTON)) {
+			let newDisplayShuffleButton: boolean = vscode.workspace.getConfiguration(constants.EXTENSION_ID).get("display-shuffle-button", defaultDisplayShuffleButton);
+			if (newDisplayShuffleButton) {
+				statusBarItemforShuffle.show();
+			} else {
+				statusBarItemforShuffle.hide();
+			}
 		}
 	});
 	context.subscriptions.push(onConfigurationChanged);
