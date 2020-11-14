@@ -42,6 +42,7 @@
     - https://okky.kr/article/463386?note=1437458
     - https://blog.fupfin.com/?p=11
     - http://m.todayhumor.co.kr/view.php?table=humorbest&no=1154153
+    - https://www.devglan.com/blog/best-developer-quotes
 - Startup
     - http://somedaybiz.com/1964
     - https://onlinebiz.kr/창업자가-기억해야-할-격언-100가지/
