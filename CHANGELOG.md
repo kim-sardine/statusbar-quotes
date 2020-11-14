@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 (2020.11.14)
+
+1. Move shuffle button to the left
+1. Add option to hide shuffle button
+1. Update quotes : `Startup`, `Wise Saying`, `Programming`
+
 ## 0.8.5 (2020.09.27)
 
 1. Update quotes : `Startup`, `Wise Saying`, `Programming`
