@@ -1,5 +1,10 @@
 # Changelog
 
+## 20.12.0
+
+1. Update quotes : `Startup`, `Programming`
+1. Change version format
+
 ## 1.1.0 (2020.11.14)
 
 1. Move shuffle button to the left
