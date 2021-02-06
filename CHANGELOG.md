@@ -1,5 +1,9 @@
 # Changelog
 
+## 21.2.6
+
+1. Fix handling Quoter
+
 ## 20.12.0
 
 1. Update quotes : `Startup`, `Programming`
