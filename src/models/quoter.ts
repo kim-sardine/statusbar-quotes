@@ -8,12 +8,14 @@ class Quoter {
 ​
 	private elapsedSeconds: number = 0;
 	private quoteList: string[] = [];
-	private quoteDisplay: string = '';
 	private interval: NodeJS.Timer | undefined;
-
 	private category: string;
 	private language: string;
 	private displaySeconds: number;
+	
+	public quoteText: string = '';
+	public quoteTooltip: string = '';
+	public quoteModal: string = '';
 
 	constructor(initialCategory: string, initialLanguage: string, initialDisplaySeconds: number) {
 		this.category = initialCategory;
@@ -27,20 +29,8 @@ class Quoter {
 		return this.timeChangedEventEmitter.event;
 	}
 
-	get quoteNow(): string {
-		return this.quoteDisplay;
-	}
-
-	get getCategory(): string {
-		return this.category;
-	}
-
-	get getLanguage(): string {
-		return this.language;
-	}
-
 	public displayRandomQuote(): void {
-		this.setQuoteDisplay(this.getRandomQuoteFromQuoteList());
+		this.setQuoteText(this.getRandomQuoteFromQuoteList());
 	}
 
 	public initElapsedSeconds(): void {
@@ -57,7 +47,6 @@ class Quoter {
 	}
 
 	private loadQuotes(): string[] {
-		
 		if (this.category === constants.CATEGORY_ALL) {
 			let sentences: string[] = [];
 			for (const [category, quotesByCategory] of Object.entries(QUOTES)) {
@@ -86,21 +75,19 @@ class Quoter {
 		return QUOTES.wise_saying[0].sentences;
 	}
 
-	private setQuoteDisplay(quote: string): void {
-		this.quoteDisplay = quote;
+	private setQuoteText(quote: string): void {
+		this.quoteText = `$(quote) ${quote}`;
+		this.quoteTooltip = `"${this.category}" in "${this.language}"`;
+		this.quoteModal = quote;
 	}
 ​
-	private fireTimeChangedEvent(elapsedSeconds: number, wiseSayDisplay: string): void {
-		const args: TimeChangedEventArgs = {
-			elapsedSeconds,
-			wiseSayDisplay
-		};
-		this.timeChangedEventEmitter.fire(args);
+	private fireTimeChangedEvent(): void {
+		this.timeChangedEventEmitter.fire({});
 	}
 
 	private tick() {
 		if (this.displaySeconds === 0) {  // display only one quote.
-			this.fireTimeChangedEvent(this.elapsedSeconds, this.quoteDisplay);
+			this.fireTimeChangedEvent();
 			return;
 		}
 		
@@ -109,7 +96,7 @@ class Quoter {
 			this.elapsedSeconds = 0;
 			this.displayRandomQuote();
 		}
-		this.fireTimeChangedEvent(this.elapsedSeconds, this.quoteDisplay);
+		this.fireTimeChangedEvent();
 	}
 
 	public start() {
@@ -133,10 +120,6 @@ class Quoter {
 	}
 }
 
-
-interface TimeChangedEventArgs {
-	elapsedSeconds: number,
-	wiseSayDisplay: string,
-}
+interface TimeChangedEventArgs {}
 ​
 export default Quoter;

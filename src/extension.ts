@@ -37,13 +37,13 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 	quoter.start();
-	quoter.onTimeChanged((args) => {
-		statusBarItem.text = `$(quote) ${args.wiseSayDisplay}`;
-		statusBarItem.tooltip = `"${quoter.getCategory}" in "${quoter.getLanguage}"`;
+	quoter.onTimeChanged(_ => {
+		statusBarItem.text = quoter.quoteText;
+		statusBarItem.tooltip = quoter.quoteTooltip;
 	});
 
 	context.subscriptions.push(vscode.commands.registerCommand(constants.CMD_SHOW_QUOTE_ON_MODAL, () => {
-		vscode.window.showInformationMessage(quoter.quoteNow);
+		vscode.window.showInformationMessage(quoter.quoteModal);
 	}));
 	
 	// Settings
@@ -118,4 +118,5 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(onConfigurationChanged);
 }
 ​
+// TODO: Dispose on deactivation
 export function deactivate() {}
