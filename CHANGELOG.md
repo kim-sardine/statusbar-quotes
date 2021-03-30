@@ -1,5 +1,9 @@
 # Changelog
 
+## 21.3.31
+
+1. Update quotes : `Programming`
+
 ## 21.2.6
 
 1. Fix handling Quoter

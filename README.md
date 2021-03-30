@@ -11,8 +11,6 @@
         - Wise saying
         - Programming
         - Startup
-    - Coming Soon
-        - ??
 - Languages
     - Supported
         - English
@@ -38,7 +36,6 @@
     - https://dzone.com/articles/more-good-programmingquotes
     - https://www.goodreads.com/quotes/tag/programming
     - https://github.com/AntJanus/programmers-proverbs
-    - https://www.goodreads.com/quotes/tag/programming
     - https://okky.kr/article/463386?note=1437458
     - https://blog.fupfin.com/?p=11
     - http://m.todayhumor.co.kr/view.php?table=humorbest&no=1154153
