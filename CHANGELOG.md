@@ -1,8 +1,7 @@
 # Changelog
 
-## 2.0.1
+## 21.5.27
 
-1. Use new version format
 1. Update quotes : `Programming`
 
 ## 21.3.31
