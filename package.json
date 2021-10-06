@@ -3,7 +3,7 @@
 	"displayName": "StatusBar Quotes",
 	"description": "Here are some quotes that will warm your poor mind tired of programming...",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "21.6.13",
+	"version": "21.10.6",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"

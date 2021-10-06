@@ -1,5 +1,9 @@
 # Changelog
 
+## 21.10.6
+
+1. Update quotes : `Programming`
+
 ## 21.6.13
 
 1. Update dependencies
