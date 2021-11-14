@@ -1,5 +1,9 @@
 # Changelog
 
+## 21.11.15
+
+1. Update quotes : `Wise Saying`
+
 ## 21.10.6
 
 1. Update quotes : `Programming`
