@@ -5,23 +5,23 @@ import * as QUOTES from '../quotes/index';
 
 class Quoter {
 	private timeChangedEventEmitter = new vscode.EventEmitter<TimeChangedEventArgs>();
-​
+
 	private elapsedSeconds: number = 0;
 	private quoteList: string[] = [];
 	private interval: NodeJS.Timer | undefined;
 	private category: string;
 	private language: string;
 	private displaySeconds: number;
-	
+
 	public quoteText: string = '';
 	public quoteTooltip: string = '';
-	public quoteModal: string = '';
+	public quoteModalText: string = '';
 
 	constructor(initialCategory: string, initialLanguage: string, initialDisplaySeconds: number) {
 		this.category = initialCategory;
 		this.language = initialLanguage;
 		this.displaySeconds = initialDisplaySeconds;
-				​
+
 		this.updateQuoteListAndChangeDisplay();
 	}
 
@@ -49,7 +49,7 @@ class Quoter {
 	private loadQuotes(): string[] {
 		if (this.category === constants.CATEGORY_ALL) {
 			let sentences: string[] = [];
-			for (const [category, quotesByCategory] of Object.entries(QUOTES)) {
+			for (const [_, quotesByCategory] of Object.entries(QUOTES)) {
 				for (let quote of quotesByCategory) {
 					if (quote.language === this.language) {
 						sentences = [...sentences, ...quote.sentences];
@@ -59,7 +59,7 @@ class Quoter {
 			return sentences;
 		}
 		else {
-			const parsedCurrentCategory = this.category.toLowerCase().replace(/ /g,"_");
+			const parsedCurrentCategory = this.category.toLowerCase().replace(/ /g, "_");
 			for (const [category, quotesByCategory] of Object.entries(QUOTES)) {
 				if (parsedCurrentCategory === category) {
 					for (let quote of quotesByCategory) {
@@ -78,19 +78,19 @@ class Quoter {
 	private setQuoteText(quote: string): void {
 		this.quoteText = `$(quote) ${quote}`;
 		this.quoteTooltip = `"${this.category}" in "${this.language}"`;
-		this.quoteModal = quote;
+		this.quoteModalText = quote;
 	}
-​
+
 	private fireTimeChangedEvent(): void {
 		this.timeChangedEventEmitter.fire({});
 	}
 
 	private tick() {
-		if (this.displaySeconds === 0) {  // display only one quote.
+		if (this.displaySeconds === 0) {  // display only one quote all along.
 			this.fireTimeChangedEvent();
 			return;
 		}
-		
+
 		this.elapsedSeconds += 1;
 		if (this.elapsedSeconds >= this.displaySeconds) {
 			this.elapsedSeconds = 0;
@@ -104,22 +104,22 @@ class Quoter {
 			this.tick();
 		}, 1000);
 	}
-	​
+
 	public setLanguage(language: string) {
 		this.language = language;
 		this.updateQuoteListAndChangeDisplay();
 	}
-​
+
 	public setCategory(category: string) {
 		this.category = category;
 		this.updateQuoteListAndChangeDisplay();
 	}
-​
+
 	public setDisplaySeconds(displaySeconds: number) {
 		this.displaySeconds = displaySeconds;
 	}
 }
 
-interface TimeChangedEventArgs {}
-​
+interface TimeChangedEventArgs { }
+
 export default Quoter;

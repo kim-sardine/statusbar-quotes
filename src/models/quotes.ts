@@ -1,5 +1,4 @@
-interface Quotes
-{
+interface Quotes {
     language: string;
     sentences: string[];
 }

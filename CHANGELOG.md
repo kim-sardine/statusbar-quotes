@@ -1,5 +1,10 @@
 # Changelog
 
+## 21.12.10
+
+1. Nit changes
+   1. fix indents and spaces
+   
 ## 21.11.15
 
 1. Update quotes : `Wise Saying`

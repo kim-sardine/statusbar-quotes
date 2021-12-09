@@ -44,7 +44,8 @@ const data: Quotes[] = [
             "You can’t just ask customers what they want and then try to give that to them. By the time you get it built, they’ll want something new. - Steve jobs",
             "You shouldn’t focus on why you can’t do something, which is what most people do. You should focus on why perhaps you can, and be one of the exceptions. - Steve Case",
             "Your most unhappy customers are your greatest source of learning. - Bill Gates",
-            "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. - Steve Jobs",        ]
+            "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. - Steve Jobs",
+        ]
     },
     {
         language: constants.LANG_KOREAN,
