@@ -1,5 +1,9 @@
 # Changelog
 
+## 22.1.1
+
+1. Update quotes : `Wise Saying`, `Startup`
+
 ## 21.12.10
 
 1. Nit changes
