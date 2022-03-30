@@ -8,6 +8,7 @@ export const CATEGORY_ALL: string = 'All';
 export const CATEGORY_WISE_SAYING: string = 'Wise Saying';
 export const CATEGORY_PROGRAMMING: string = 'Programming';
 export const CATEGORY_STARTUP: string = 'Startup';
+export const CATEGORY_HTWFAIP: string = 'How to Win Friends and Influence People (Dale Carnegie)';
 
 export const LANG_KOREAN: string = 'Korean';
 export const LANG_ENGLISH: string = 'English';

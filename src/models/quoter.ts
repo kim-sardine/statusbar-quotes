@@ -59,7 +59,7 @@ class Quoter {
 			return sentences;
 		}
 		else {
-			const parsedCurrentCategory = this.category.toLowerCase().replace(/ /g, "_");
+			const parsedCurrentCategory = this.category.toLowerCase().replace(/\(|\)/g, "").replace(/ /g, "_");
 			for (const [category, quotesByCategory] of Object.entries(QUOTES)) {
 				if (parsedCurrentCategory === category) {
 					for (let quote of quotesByCategory) {
@@ -78,7 +78,7 @@ class Quoter {
 	private setQuoteText(quote: string): void {
 		this.quoteText = `$(quote) ${quote}`;
 		this.quoteTooltip = `"${this.category}" in "${this.language}"`;
-		this.quoteModalText = quote;
+		this.quoteModalText = `${quote} [${this.category}]`;
 	}
 
 	private fireTimeChangedEvent(): void {

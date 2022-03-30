@@ -11,6 +11,7 @@
         - Wise saying
         - Programming
         - Startup
+        - How to Win Friends and Influence People (Dale Carnegie)
 - Languages
     - Supported
         - English
@@ -46,6 +47,8 @@
     - https://www.forbes.com/sites/allbusiness/2014/02/10/50-inspirational-quotes-for-startups-and-entrepreneurs/#4c3c18c6ef05
     - https://kaushalrajpopat.wordpress.com/2012/08/20/series-i-of-inspiring-entrepreneur-startup-quotes/
     - https://www.thearthunters.com
+- How to Win Friends and Influence People (Dale Carnegie)
+    - https://www.amazon.com/How-Win-Friends-Influence-People/dp/0671027034/
 
 ## You may also like
 

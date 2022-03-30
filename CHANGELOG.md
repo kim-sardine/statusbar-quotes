@@ -1,5 +1,9 @@
 # Changelog
 
+## 22.3.31
+
+1. Add new quote : `How to Win Friends and Influence People (Dale Carnegie)`
+
 ## 22.1.1
 
 1. Update quotes : `Wise Saying`, `Startup`

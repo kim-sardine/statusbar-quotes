@@ -3,7 +3,13 @@ import * as vscode from 'vscode';
 import * as constants from './constants';
 import Quoter from './models/quoter';
 
-const supportedCategory = [constants.CATEGORY_ALL, constants.CATEGORY_WISE_SAYING, constants.CATEGORY_PROGRAMMING, constants.CATEGORY_STARTUP];
+const supportedCategory = [
+	constants.CATEGORY_ALL,
+	constants.CATEGORY_WISE_SAYING,
+	constants.CATEGORY_PROGRAMMING,
+	constants.CATEGORY_STARTUP,
+	constants.CATEGORY_HTWFAIP,
+];
 const supportedLanguage = [constants.LANG_ENGLISH, constants.LANG_KOREAN];
 
 const defaultCategory = constants.CATEGORY_ALL;

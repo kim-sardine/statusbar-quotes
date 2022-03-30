@@ -3,7 +3,7 @@
 	"displayName": "StatusBar Quotes",
 	"description": "Here are some cool quotes that will warm your poor mind tired of programming.",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "22.1.1",
+	"version": "22.3.31",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.42.0"
@@ -46,13 +46,15 @@
 						"All",
 						"Wise Saying",
 						"Programming",
-						"Startup"
+						"Startup",
+						"How to Win Friends and Influence People (Dale Carnegie)"
 					],
 					"enumDescriptions": [
 						"",
 						"Mindfulness",
 						"May the Force be with you..",
-						"Inspirational quotes for startups"
+						"Inspirational quotes for startups",
+						"Great opportunity to improve yourself social relations"
 					]
 				},
 				"statusbar-quotes.language": {

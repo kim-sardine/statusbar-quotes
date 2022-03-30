@@ -1,0 +1,77 @@
+import * as constants from '../constants';
+import Quotes from '../models/quotes';
+
+const data: Quotes[] = [
+    {
+        language: constants.LANG_ENGLISH,
+        sentences: [
+            "Techniques in Handling People 1. Don't criticize, condemn or complain.",
+            "Techniques in Handling People 2. Give honest and sincere appreciation.",
+            "Techniques in Handling People 3. Arouse in the other person an eager want.",
+            "Six ways to Make People Like You 1. Become genuinely interested in other people.",
+            "Six ways to Make People Like You 2. Smile.",
+            "Six ways to Make People Like You 3. Remember that a person's name is to that person the sweetest and most important sound in any language.",
+            "Six ways to Make People Like You 4. Be a good listener. Encourage others to talk about themselves.",
+            "Six ways to Make People Like You 5. Talk in terms of the other person's interests.",
+            "Six ways to Make People Like You 6. Make the other person feel important – and do it sincerely.",
+            "Win People to Your Way of Thinking 1. The only way to get the best of an argument is to avoid it.",
+            "Win People to Your Way of Thinking 2. Show respect for the other person’s opinions. Never say, 'You're wrong.'",
+            "Win People to Your Way of Thinking 3. If you are wrong, admit it quickly and emphatically.",
+            "Win People to Your Way of Thinking 4. Begin in a friendly way.",
+            "Win People to Your Way of Thinking 5. Get the other person saying 'yes, yes' immediately.",
+            "Win People to Your Way of Thinking 6. Let the other person do a great deal of the talking.",
+            "Win People to Your Way of Thinking 7. Let the other person feel that the idea is his or hers.",
+            "Win People to Your Way of Thinking 8. Try honestly to see things from the other person’s point of view.",
+            "Win People to Your Way of Thinking 9. Be sympathetic with the other person’s ideas and desires.",
+            "Win People to Your Way of Thinking 10. Appeal to the nobler motives.",
+            "Win People to Your Way of Thinking 11. Dramatize your ideas.",
+            "Win People to Your Way of Thinking 12. Throw down a challenge.",
+            "How to Change People 1. Begin with praise and honest appreciation.",
+            "How to Change People 2. Call attention to people's mistakes indirectly.",
+            "How to Change People 3. Talk about your own mistakes before criticizing the other person.",
+            "How to Change People 4. Ask questions instead of giving direct orders.",
+            "How to Change People 5. Let the other person save face.",
+            "How to Change People 6. Praise the slightest improvement and praise every improvement. Be “hearty in your approbation and lavish in your praise.'",
+            "How to Change People 7. Give the other person a fine reputation to live up to.",
+            "How to Change People 8. Use encouragement. Make the fault seem easy to correct.",
+            "How to Change People 9. Make the other person happy about doing the thing you suggest.",
+        ]
+    },
+    {
+        language: constants.LANG_KOREAN,
+        sentences: [
+            "인간관계의 기본 원칙 1. 비난이나 비평, 불평을 하지 말라",
+            "인간관계의 기본 원칙 2. 솔직하고 진지하게 칭찬하라",
+            "인간관계의 기본 원칙 3. 상대방의 입장에서 사물을 보라",
+            "인간관계를 잘 맺는 방법 1. 어느 곳에서나 환영받는 방법 - 다른 사람들에게 순수한 관심을 기울여라",
+            "인간관계를 잘 맺는 방법 2. 첫인상을 좋게 하는 간단한 방법 - 미소를 지어라",
+            "인간관계를 잘 맺는 방법 3. 상대방의 이름을 잘 기억하라",
+            "인간관계를 잘 맺는 방법 4. 즐거운 대화를 나누는 쉬운 방법 - 경청하라",
+            "인간관계를 잘 맺는 방법 5. 사람들의 흥미를 끄는 방법 - 상대방의 관심사에 대해 얘기하라",
+            "인간관계를 잘 맺는 방법 6. 사람들이 즉시 나를 좋아하게 만드는 방법 - 상대방으로 하여금 중요하다는 느낌이 들게 하라. 단, 성실한 태도로 해야 한다.",
+            "상대방을 설득하는 방법 1. 논쟁을 피하라",
+            "상대방을 설득하는 방법 2. 상대방의 견해를 존중하라. 결코 '당신이 틀렸다'고 말하지 말라",
+            "상대방을 설득하는 방법 3. 잘못했으면 솔직히 인정하라",
+            "상대방을 설득하는 방법 4. 우호적인 태도로 말을 시작하라",
+            "상대방을 설득하는 방법 5. 소크라테스의 비결을 활용하라 - 상대방이 당신의 말에 ‘네, 네’ 라고 대답하게 하라",
+            "상대방을 설득하는 방법 6. 상대방으로 하여금 많은 이야기를 하게 하라.",
+            "상대방을 설득하는 방법 7. 상대방으로 하여금 그 아이디어가 바로 자신의 것이라고 느끼게 하라.",
+            "상대방을 설득하는 방법 8. 상대방의 관점에서 사물을 볼 수 있도록 성실히 노력하라.",
+            "상대방을 설득하는 방법 9. 모든 사람이 원하는 것 - 상대방의 생각이나 욕구에 공감하라",
+            "상대방을 설득하는 방법 10. 보다 고매한 동기에 호소하라",
+            "상대방을 설득하는 방법 11. 당신의 생각을 극적으로 표현하라",
+            "상대방을 설득하는 방법 12. 모든 방법이 소용 없을 때 사용하는 방법 - 도전 의욕을 불러일으켜라",
+            "리더가 되는 방법 1. 칭찬과 감사의 말로 시작하라",
+            "리더가 되는 방법 2. 미움을 사지 않고 비평하는 방법 - 잘못을 간접적으로 알게 하라",
+            "리더가 되는 방법 3. 상대방을 비평하기 전에 자신의 실수를 먼저 이야기하라",
+            "리더가 되는 방법 4. 직접적으로 명령하지 말고, 요청하라",
+            "리더가 되는 방법 5. 상대의 체면을 세워주어라",
+            "리더가 되는 방법 6. 아주 작은 진전에도 칭찬을 아끼지 말라. 또한 진전이 있을 때마다 칭찬을 해주어라. 동의는 진심으로, 칭찬은 아낌없이 하라.",
+            "리더가 되는 방법 7. 상대방에게 훌륭한 명성을 갖도록 해주어라.",
+            "리더가 되는 방법 8. 격려해 주어라. 잘못은 쉽게 고칠 수 있다고 느끼게 하라.",
+            "리더가 되는 방법 9. 당신이 제안하는 것을 상대방이 기꺼이 하도록 만들어라",
+        ]
+    }
+];
+
+export default data;
