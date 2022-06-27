@@ -1,13 +1,14 @@
 import * as vscode from 'vscode';
 import * as constants from '../constants';
 import * as QUOTES from '../quotes/index';
-
+import Quote from './quote';
+import Quotes from './quotes';
 
 class Quoter {
 	private timeChangedEventEmitter = new vscode.EventEmitter<TimeChangedEventArgs>();
 
 	private elapsedSeconds: number = 0;
-	private quoteList: string[] = [];
+	private quoteList: Quote[] = [];
 	private interval: NodeJS.Timer | undefined;
 	private category: string;
 	private language: string;
@@ -37,34 +38,34 @@ class Quoter {
 		this.elapsedSeconds = 0;
 	}
 
-	private getRandomQuoteFromQuoteList(): string {
+	private getRandomQuoteFromQuoteList(): Quote {
 		return this.quoteList[Math.floor(Math.random() * this.quoteList.length)];
 	}
 
 	private updateQuoteListAndChangeDisplay(): void {
-		this.quoteList = this.loadQuotes();
+		this.quoteList = this.loadQuoteList();
 		this.displayRandomQuote();
 	}
 
-	private loadQuotes(): string[] {
+	private loadQuoteList(): Quote[] {
+		let quoteList: Quote[] = [];
 		if (this.category === constants.CATEGORY_ALL) {
-			let sentences: string[] = [];
-			for (const [_, quotesByCategory] of Object.entries(QUOTES)) {
-				for (let quote of quotesByCategory) {
-					if (quote.language === this.language) {
-						sentences = [...sentences, ...quote.sentences];
+			for (const [quoteCategory, quotesByCategory] of Object.entries(QUOTES)) {
+				for (let quotes of quotesByCategory) {
+					if (quotes.language === this.language) {
+						quoteList = [...quoteList, ...this.convertQuotesToQuoteList(quotes)]
 					}
 				}
 			}
-			return sentences;
+			return quoteList;
 		}
 		else {
 			const parsedCurrentCategory = this.category.toLowerCase().replace(/\(|\)/g, "").replace(/ /g, "_");
-			for (const [category, quotesByCategory] of Object.entries(QUOTES)) {
-				if (parsedCurrentCategory === category) {
-					for (let quote of quotesByCategory) {
-						if (quote.language === this.language) {
-							return quote.sentences;
+			for (const [quoteCategory, quotesByCategory] of Object.entries(QUOTES)) {
+				if (parsedCurrentCategory === quoteCategory) {
+					for (let quotes of quotesByCategory) {
+						if (quotes.language === this.language) {
+							return this.convertQuotesToQuoteList(quotes);
 						}
 					}
 				}
@@ -72,13 +73,21 @@ class Quoter {
 		}
 
 		vscode.window.showWarningMessage(`sorry, "${this.category}" in "${this.language}" is not supported now`);
-		return QUOTES.wise_saying[0].sentences;
+		return this.convertQuotesToQuoteList(QUOTES.wise_saying[0])
 	}
 
-	private setQuoteText(quote: string): void {
-		this.quoteText = `$(quote) ${quote}`;
-		this.quoteTooltip = `"${this.category}" in "${this.language}"`;
-		this.quoteModalText = `${quote} [${this.category}]`;
+	private convertQuotesToQuoteList(quotes: Quotes): Quote[] {
+		let quoteList: Quote[] = [];
+		for (let sentence of quotes.sentences) {
+			quoteList.push(new Quote(quotes.language, quotes.category, sentence))
+		}
+		return quoteList
+	}
+
+	private setQuoteText(quote: Quote): void {
+		this.quoteText = `$(quote) ${quote.sentence}`;
+		this.quoteTooltip = `"${quote.category}" in "${quote.language}"`;
+		this.quoteModalText = quote.sentence;
 	}
 
 	private fireTimeChangedEvent(): void {

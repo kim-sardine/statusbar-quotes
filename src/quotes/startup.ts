@@ -2,9 +2,10 @@ import * as constants from '../constants';
 import Quotes from '../models/quotes';
 
 const data: Quotes[] = [
-    {
-        language: constants.LANG_ENGLISH,
-        sentences: [
+    new Quotes(
+        constants.LANG_ENGLISH,
+        constants.CATEGORY_STARTUP,
+        [
             "A lot of this is sheer persistence. It's sheer persistence at one company or it's sheer persistence at whatever you're doing in the future. - Marc Andreessen",
             "A pessimist sees the difficulty in every opportunity; an optimist sees the opportunity in every difficulty. - Winston Churchill",
             "A satisfied customer is the best business strategy of all. - Michael LeBoeuf",
@@ -46,10 +47,11 @@ const data: Quotes[] = [
             "Your most unhappy customers are your greatest source of learning. - Bill Gates",
             "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do. - Steve Jobs",
         ]
-    },
-    {
-        language: constants.LANG_KOREAN,
-        sentences: [
+    ),
+    new Quotes(
+        constants.LANG_KOREAN,
+        constants.CATEGORY_STARTUP,
+        [
             "18년동안 아마존을 성공으로 이끈 3가지 큰 전략이 있다.그것은 고객을 우선 생각하고, 발명하고, 인내하는 것이다. - 제프 베조스",
             "가끔은 혁신을 추구하다 실수할 때도 있다. 실수를 빨리 인정하고 이를 개선해 나가는 것이 최선이다. - 스티브 잡스",
             "가장 불만이 많은 고객에게 고객에게 가장 많은 것을 배울 수 있다. - 빌 게이츠",
@@ -83,7 +85,7 @@ const data: Quotes[] = [
             "포기해야겠다는 생각이 들 때야말로 성공에 가까워진 때이다. - 밥 파슨스",
             "한 번 실패와 영원한 실패를 혼동하지 마라. - 피츠제럴드",
         ]
-    }
+    )
 ];
 
 export default data;

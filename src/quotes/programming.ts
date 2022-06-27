@@ -2,9 +2,10 @@ import * as constants from '../constants';
 import Quotes from '../models/quotes';
 
 const data: Quotes[] = [
-    {
-        language: constants.LANG_ENGLISH,
-        sentences: [
+    new Quotes(
+        constants.LANG_ENGLISH,
+        constants.CATEGORY_PROGRAMMING,
+        [
             "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live - John Woods",
             "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler",
             "Any sufficiently advanced bug is indistinguishable from a feature - R. Kulawiec",
@@ -50,10 +51,11 @@ const data: Quotes[] = [
             "when you don't create things, you become defined by your tastes rather than ability. your tastes only narrow & exclude people. so create. - Why The Lucky Stiff",
             "Your code might be perfect but you aren't",
         ]
-    },
-    {
-        language: constants.LANG_KOREAN,
-        sentences: [
+    ),
+    new Quotes(
+        constants.LANG_KOREAN,
+        constants.CATEGORY_PROGRAMMING,
+        [
             "'제 컴퓨터에는 잘 돌아가는데요?'",
             "Perl : RSA 암호화 전과 후가 똑같아 보이는 유일한 프로그래밍 언어",
             "가장 매력적인 PR 은 빨간색으로 도배되어 있다.",
@@ -99,7 +101,7 @@ const data: Quotes[] = [
             "형편없는 프로그래머가 언어를 탓한다.",
             "훌륭한 코드는 훌륭한 문서보다 낫다. - Steve McConnell",
         ]
-    }
+    )
 ];
 
 export default data;

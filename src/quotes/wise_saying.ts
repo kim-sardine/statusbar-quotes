@@ -2,9 +2,10 @@ import * as constants from '../constants';
 import Quotes from '../models/quotes';
 
 const data: Quotes[] = [
-    {
-        language: constants.LANG_ENGLISH,
-        sentences: [
+    new Quotes(
+        constants.LANG_ENGLISH,
+        constants.CATEGORY_WISE_SAYING,
+        [
             "All our dreams can come true if we have the courage to pursue them. - Walt Disney",
             "All progress takes place outside the comfort zone. - Michael John Bobak",
             "Anyone can be cynical. Dare to be an optimist. - Californication",
@@ -100,10 +101,11 @@ const data: Quotes[] = [
             "You measure the size of the accomplishment by the obstacles you had to overcome to reach your goals. - Booker T. Washington",
             "You must expect great things of yourself before you can do them. - Michael Jordan",
         ]
-    },
-    {
-        language: constants.LANG_KOREAN,
-        sentences: [
+    ),
+    new Quotes(
+        constants.LANG_KOREAN,
+        constants.CATEGORY_WISE_SAYING,
+        [
             "가시에 찔리지 않고서는 장미를 모을 수 없다. - 핀페이",
             "간단함이 훌륭함의 열쇠다. - 이소룡",
             "강에서 물고기를 보고 탐내는 것보다 돌아가서 그물을 짜는 것이 옳다. - 예악지",
@@ -145,7 +147,7 @@ const data: Quotes[] = [
             "현재와 미래는 어떻게든 연결되어 있다 - 스티브 잡스",
             "휴식은 게으름도, 멈춤도 아니다. - 헨리 포드",
         ]
-    }
+    )
 ];
 
 export default data;
