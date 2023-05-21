@@ -53,7 +53,7 @@ class Quoter {
 			for (const [quoteCategory, quotesByCategory] of Object.entries(QUOTES)) {
 				for (let quotes of quotesByCategory) {
 					if (quotes.language === this.language) {
-						quoteList = [...quoteList, ...this.convertQuotesToQuoteList(quotes)]
+						quoteList = [...quoteList, ...this.convertQuotesToQuoteList(quotes)];
 					}
 				}
 			}
@@ -73,15 +73,15 @@ class Quoter {
 		}
 
 		vscode.window.showWarningMessage(`sorry, "${this.category}" in "${this.language}" is not supported now`);
-		return this.convertQuotesToQuoteList(QUOTES.wise_saying[0])
+		return this.convertQuotesToQuoteList(QUOTES.wise_saying[0]);
 	}
 
 	private convertQuotesToQuoteList(quotes: Quotes): Quote[] {
 		let quoteList: Quote[] = [];
 		for (let sentence of quotes.sentences) {
-			quoteList.push(new Quote(quotes.language, quotes.category, sentence))
+			quoteList.push(new Quote(quotes.language, quotes.category, sentence));
 		}
-		return quoteList
+		return quoteList;
 	}
 
 	private setQuoteText(quote: Quote): void {

@@ -1,5 +1,10 @@
 # Changelog
 
+## 23.5.21
+
+- `Security`
+  - Version Up all dependencies
+
 ## 22.6.27
 
 - `Changed`

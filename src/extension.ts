@@ -72,23 +72,23 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(cmdChangeLanguage);
 
 	const cmdChangeDisplaySeconds = vscode.commands.registerCommand(constants.CMD_CHANGE_DISPLAY_SECONDS, async () => {
-		let display_seconds = await vscode.window.showInputBox(
+		let displaySeconds = await vscode.window.showInputBox(
 			{
 				prompt: 'Quote change time interval (seconds)',
 				placeHolder: `Range : 0 (do not change quote) ~ ${constants.MAXIMUM_DISPLAY_SECONDS} (${constants.MAXIMUM_DISPLAY_SECONDS_HUMANIZE})`
 			}
 		);
-		if (!display_seconds || isNaN(parseInt(display_seconds))) {
+		if (!displaySeconds || isNaN(parseInt(displaySeconds))) {
 			vscode.window.showWarningMessage(`You can only enter number between 0 and ${constants.MAXIMUM_DISPLAY_SECONDS}`);
 			return;
 		}
 
-		let _display_seconds: number = parseInt(display_seconds);
-		if (_display_seconds > constants.MAXIMUM_DISPLAY_SECONDS) {
-			_display_seconds = constants.MAXIMUM_DISPLAY_SECONDS;
+		let _displaySeconds: number = parseInt(displaySeconds);
+		if (_displaySeconds > constants.MAXIMUM_DISPLAY_SECONDS) {
+			_displaySeconds = constants.MAXIMUM_DISPLAY_SECONDS;
 		}
 
-		await vscode.workspace.getConfiguration(constants.EXTENSION_ID).update("display-seconds", _display_seconds, true);
+		await vscode.workspace.getConfiguration(constants.EXTENSION_ID).update("display-seconds", _displaySeconds, true);
 	});
 	context.subscriptions.push(cmdChangeDisplaySeconds);
 
