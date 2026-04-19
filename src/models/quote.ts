@@ -1,13 +1,9 @@
 class Quote {
-    language: string;
-    category: string;
-    sentence: string;
-
-    constructor(language: string, category: string, sentence: string) {
-        this.language = language;
-        this.category = category;
-        this.sentence = sentence;
-    }  
+	constructor(
+		public readonly language: string,
+		public readonly category: string,
+		public readonly sentence: string,
+	) { }
 }
 
 export default Quote;

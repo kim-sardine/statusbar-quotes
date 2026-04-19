@@ -1,6 +1,6 @@
 export const EXTENSION_ID: string = 'statusbar-quotes';
 
-export const DEFAULT_DISPLAY_SECONDS: number = 10;
+export const DEFAULT_DISPLAY_SECONDS: number = 15;
 export const MAXIMUM_DISPLAY_SECONDS: number = 86400; // 1 hour
 export const MAXIMUM_DISPLAY_SECONDS_HUMANIZE: string = '1 hour';
 

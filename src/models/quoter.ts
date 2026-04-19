@@ -1,15 +1,15 @@
 import * as vscode from 'vscode';
 import * as constants from '../constants';
-import * as QUOTES from '../quotes/index';
 import Quote from './quote';
-import Quotes from './quotes';
+import QuoteRepository from './quoteRepository';
+import { presentQuote } from './quotePresenter';
 
-class Quoter {
-	private timeChangedEventEmitter = new vscode.EventEmitter<TimeChangedEventArgs>();
+class Quoter implements vscode.Disposable {
+	private readonly timeChangedEventEmitter = new vscode.EventEmitter<TimeChangedEventArgs>();
 
 	private elapsedSeconds: number = 0;
 	private quoteList: Quote[] = [];
-	private interval: NodeJS.Timer | undefined;
+	private interval: NodeJS.Timeout | undefined;
 	private category: string;
 	private language: string;
 	private displaySeconds: number;
@@ -18,12 +18,18 @@ class Quoter {
 	public quoteTooltip: string = '';
 	public quoteModalText: string = '';
 
-	constructor(initialCategory: string, initialLanguage: string, initialDisplaySeconds: number) {
+	constructor(
+		initialCategory: string,
+		initialLanguage: string,
+		initialDisplaySeconds: number,
+		private readonly quoteRepository: QuoteRepository = new QuoteRepository(),
+		private readonly random: () => number = () => Math.random(),
+	) {
 		this.category = initialCategory;
 		this.language = initialLanguage;
 		this.displaySeconds = initialDisplaySeconds;
 
-		this.updateQuoteListAndChangeDisplay();
+		this.updateQuoteListAndChangeDisplay(false);
 	}
 
 	get onTimeChanged(): vscode.Event<TimeChangedEventArgs> {
@@ -31,70 +37,78 @@ class Quoter {
 	}
 
 	public displayRandomQuote(): void {
-		this.setQuoteText(this.getRandomQuoteFromQuoteList());
+		this.selectRandomQuote();
+		this.fireTimeChangedEvent();
 	}
 
 	public initElapsedSeconds(): void {
 		this.elapsedSeconds = 0;
 	}
 
+	public start(): void {
+		this.stop();
+		this.interval = setInterval(() => {
+			this.tick();
+		}, 1000);
+	}
+
+	public stop(): void {
+		if (this.interval) {
+			clearInterval(this.interval);
+			this.interval = undefined;
+		}
+	}
+
+	public dispose(): void {
+		this.stop();
+		this.timeChangedEventEmitter.dispose();
+	}
+
+	public setLanguage(language: string): void {
+		this.language = language;
+		this.updateQuoteListAndChangeDisplay(true);
+	}
+
+	public setCategory(category: string): void {
+		this.category = category;
+		this.updateQuoteListAndChangeDisplay(true);
+	}
+
+	public setDisplaySeconds(displaySeconds: number): void {
+		this.displaySeconds = displaySeconds;
+	}
+
 	private getRandomQuoteFromQuoteList(): Quote {
-		return this.quoteList[Math.floor(Math.random() * this.quoteList.length)];
+		return this.quoteList[Math.floor(this.random() * this.quoteList.length)];
 	}
 
-	private updateQuoteListAndChangeDisplay(): void {
-		this.quoteList = this.loadQuoteList();
-		this.displayRandomQuote();
-	}
+	private updateQuoteListAndChangeDisplay(notify: boolean): void {
+		const result = this.quoteRepository.findQuotes(this.category, this.language);
+		this.quoteList = result.quotes;
 
-	private loadQuoteList(): Quote[] {
-		let quoteList: Quote[] = [];
-		if (this.category === constants.CATEGORY_ALL) {
-			for (const [quoteCategory, quotesByCategory] of Object.entries(QUOTES)) {
-				for (let quotes of quotesByCategory) {
-					if (quotes.language === this.language) {
-						quoteList = [...quoteList, ...this.convertQuotesToQuoteList(quotes)];
-					}
-				}
-			}
-			return quoteList;
-		}
-		else {
-			const parsedCurrentCategory = this.category.toLowerCase().replace(/\(|\)/g, "").replace(/ /g, "_");
-			for (const [quoteCategory, quotesByCategory] of Object.entries(QUOTES)) {
-				if (parsedCurrentCategory === quoteCategory) {
-					for (let quotes of quotesByCategory) {
-						if (quotes.language === this.language) {
-							return this.convertQuotesToQuoteList(quotes);
-						}
-					}
-				}
-			}
+		if (!result.supported) {
+			vscode.window.showWarningMessage(`sorry, "${this.category}" in "${this.language}" is not supported now`);
 		}
 
-		vscode.window.showWarningMessage(`sorry, "${this.category}" in "${this.language}" is not supported now`);
-		return this.convertQuotesToQuoteList(QUOTES.wise_saying[0]);
-	}
-
-	private convertQuotesToQuoteList(quotes: Quotes): Quote[] {
-		let quoteList: Quote[] = [];
-		for (let sentence of quotes.sentences) {
-			quoteList.push(new Quote(quotes.language, quotes.category, sentence));
+		this.selectRandomQuote();
+		if (notify) {
+			this.fireTimeChangedEvent();
 		}
-		return quoteList;
 	}
 
-	private setQuoteText(quote: Quote): void {
-		this.quoteText = `$(quote) ${quote.sentence}`;
-		this.quoteTooltip = `"${quote.category}" in "${quote.language}"`;
-		this.quoteModalText = quote.sentence;
+	private selectRandomQuote(): void {
+		const quote = this.getRandomQuoteFromQuoteList();
+		const presentedQuote = presentQuote(quote);
+		this.quoteText = presentedQuote.quoteText;
+		this.quoteTooltip = presentedQuote.quoteTooltip;
+		this.quoteModalText = presentedQuote.quoteModalText;
 	}
 
 	private fireTimeChangedEvent(): void {
 		this.timeChangedEventEmitter.fire({});
 	}
 
-	private tick() {
+	private tick(): void {
 		if (this.displaySeconds === 0) {  // display only one quote all along.
 			this.fireTimeChangedEvent();
 			return;
@@ -103,29 +117,9 @@ class Quoter {
 		this.elapsedSeconds += 1;
 		if (this.elapsedSeconds >= this.displaySeconds) {
 			this.elapsedSeconds = 0;
-			this.displayRandomQuote();
+			this.selectRandomQuote();
 		}
 		this.fireTimeChangedEvent();
-	}
-
-	public start() {
-		this.interval = setInterval(() => {
-			this.tick();
-		}, 1000);
-	}
-
-	public setLanguage(language: string) {
-		this.language = language;
-		this.updateQuoteListAndChangeDisplay();
-	}
-
-	public setCategory(category: string) {
-		this.category = category;
-		this.updateQuoteListAndChangeDisplay();
-	}
-
-	public setDisplaySeconds(displaySeconds: number) {
-		this.displaySeconds = displaySeconds;
 	}
 }
 
