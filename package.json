@@ -1,9 +1,9 @@
 {
 	"name": "statusbar-quotes",
 	"displayName": "StatusBar Quotes",
-	"description": "Here are some cool quotes that will warm your poor mind tired of programming.",
+	"description": "Quiet motivation in your VS Code status bar. Add your own custom quotes, principles, and categories.",
 	"icon": "assets/speech-balloon-ms.png",
-	"version": "23.5.21",
+	"version": "26.4.20",
 	"publisher": "kim-sardine",
 	"engines": {
 		"vscode": "^1.73.0"
@@ -12,10 +12,13 @@
 		"Other"
 	],
 	"keywords": [
+		"custom quotes",
 		"status bar quote",
-		"status bar",
-		"life quotes",
-		"good quotes",
+		"developer motivation",
+		"personal quotes",
+		"coding principles",
+		"focus",
+		"developer productivity",
 		"quotes"
 	],
 	"repository": {
@@ -47,15 +50,18 @@
 						"Wise Saying",
 						"Programming",
 						"Startup",
-						"How to Win Friends and Influence People (Dale Carnegie)"
+						"How to Win Friends and Influence People (Dale Carnegie)",
+						"Choose Custom Category..."
 					],
 					"enumDescriptions": [
 						"",
 						"Mindfulness",
 						"May the Force be with you..",
 						"Inspirational quotes for startups",
-						"Great opportunity to improve yourself social relations"
-					]
+						"Great opportunity to improve yourself social relations",
+						"Open the category picker so you can choose a custom category."
+					],
+					"markdownDescription": "Choose a built-in quote category. Select `Choose Custom Category...` to open the category picker and choose one of your custom categories."
 				},
 				"statusbar-quotes.language": {
 					"type": "string",
@@ -76,6 +82,14 @@
 					"type": "boolean",
 					"default": true,
 					"markdownDescription": "Display shuffle button to the left of the quote."
+				},
+				"statusbar-quotes.custom-quotes": {
+					"type": "object",
+					"default": {
+						"version": 2,
+						"categories": {}
+					},
+					"markdownDescription": "Advanced: manage your custom quotes as JSON. Use category names as keys and string arrays as quotes, for example `{ \"version\": 2, \"categories\": { \"Principles\": [\"Ship small, verify honestly.\"] } }`. You can also use the Command Palette commands to manage this setting."
 				}
 			}
 		},
@@ -94,6 +108,26 @@
 				"command": "statusbar-quotes.change-display-seconds",
 				"title": "Change display seconds",
 				"category": "StatusBar Quote"
+			},
+			{
+				"command": "statusbar-quotes.add-custom-category",
+				"title": "Add Custom Category",
+				"category": "StatusBar Quote"
+			},
+			{
+				"command": "statusbar-quotes.manage-custom-categories",
+				"title": "Manage Custom Categories",
+				"category": "StatusBar Quote"
+			},
+			{
+				"command": "statusbar-quotes.add-custom-quote",
+				"title": "Add Custom Quote",
+				"category": "StatusBar Quote"
+			},
+			{
+				"command": "statusbar-quotes.manage-custom-quotes",
+				"title": "Manage Custom Quotes",
+				"category": "StatusBar Quote"
 			}
 		]
 	},
@@ -108,7 +142,7 @@
 	"devDependencies": {
 		"@types/mocha": "^10.0.10",
 		"@types/node": "^25.6.0",
-		"@types/vscode": "^1.116.0",
+		"@types/vscode": "1.73.0",
 		"@typescript-eslint/eslint-plugin": "^8.58.2",
 		"@typescript-eslint/parser": "^8.58.2",
 		"@vscode/test-electron": "^2.5.2",

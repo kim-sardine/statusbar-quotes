@@ -1,5 +1,15 @@
 # Changelog
 
+## 26.4.20
+
+- `Added`
+  - Add Custom Quotes with user-managed custom categories.
+  - Add Settings JSON support for `statusbar-quotes.custom-quotes`.
+  - Add `Choose Custom Category...` setting option to open the category picker.
+- `Changed`
+  - Reposition the extension around quiet, personal motivation quotes in the status bar.
+  - Keep custom quote settings human-readable by using category names as keys.
+
 ## 23.5.21
 
 - `Security`

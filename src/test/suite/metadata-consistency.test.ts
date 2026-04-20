@@ -7,6 +7,9 @@ import * as quoteGroups from '../../quotes';
 
 interface ExtensionManifest {
 	contributes: {
+		commands: Array<{
+			command: string;
+		}>;
 		configuration: {
 			properties: Record<string, {
 				default?: unknown;
@@ -41,6 +44,29 @@ suite('Extension metadata consistency', () => {
 		const displaySecondsConfiguration = manifest.contributes.configuration.properties[constants.SETTING_DISPLAY_SECONDS];
 
 		assert.strictEqual(displaySecondsConfiguration.default, constants.DEFAULT_DISPLAY_SECONDS);
+	});
+
+	test('custom quotes setting uses the public quotes shape', () => {
+		const manifest = readManifest();
+		const customQuotesConfiguration = manifest.contributes.configuration.properties[constants.SETTING_CUSTOM_QUOTES];
+
+		assert.deepStrictEqual(customQuotesConfiguration.default, {
+			version: 2,
+			categories: {},
+		});
+	});
+
+	test('package command contributions include every user-facing command constant', () => {
+		const manifest = readManifest();
+		const commands = new Set(manifest.contributes.commands.map(command => command.command));
+
+		assert.ok(commands.has(constants.CMD_CHANGE_CATEGORY));
+		assert.ok(commands.has(constants.CMD_CHANGE_LANGUAGE));
+		assert.ok(commands.has(constants.CMD_CHANGE_DISPLAY_SECONDS));
+		assert.ok(commands.has(constants.CMD_ADD_CUSTOM_CATEGORY));
+		assert.ok(commands.has(constants.CMD_MANAGE_CUSTOM_CATEGORIES));
+		assert.ok(commands.has(constants.CMD_ADD_CUSTOM_QUOTE));
+		assert.ok(commands.has(constants.CMD_MANAGE_CUSTOM_QUOTES));
 	});
 
 	test('every category registry entry points to an exported quote group', () => {

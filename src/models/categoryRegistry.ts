@@ -27,6 +27,12 @@ export const categoryDefinitions: readonly CategoryDefinition[] = [
 export const supportedCategories: readonly string[] = [
 	constants.CATEGORY_ALL,
 	...categoryDefinitions.map(category => category.displayName),
+	constants.CATEGORY_CHOOSE_CUSTOM,
+];
+
+export const builtInCategories: readonly string[] = [
+	constants.CATEGORY_ALL,
+	...categoryDefinitions.map(category => category.displayName),
 ];
 
 export const supportedLanguages: readonly string[] = [

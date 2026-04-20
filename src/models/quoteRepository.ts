@@ -3,6 +3,7 @@ import * as quoteGroups from '../quotes';
 import Quote from './quote';
 import Quotes from './quotes';
 import { quoteGroupKeyForCategory } from './categoryRegistry';
+import { allCustomQuotes, customQuotesForCategory, CustomQuoteSource } from './customQuote';
 
 export interface QuoteLookupResult {
 	readonly quotes: Quote[];
@@ -12,12 +13,26 @@ export interface QuoteLookupResult {
 type QuoteGroupMap = Record<string, readonly Quotes[]>;
 
 class QuoteRepository {
-	constructor(private readonly groups: QuoteGroupMap = quoteGroups) { }
+	constructor(
+		private readonly groups: QuoteGroupMap = quoteGroups,
+		private readonly customQuoteSource?: CustomQuoteSource,
+	) { }
 
 	public findQuotes(category: string, language: string): QuoteLookupResult {
+		const customQuotes = this.findCustomQuotes(category);
+		if (customQuotes) {
+			return {
+				quotes: customQuotes,
+				supported: true,
+			};
+		}
+
 		if (category === constants.CATEGORY_ALL) {
 			return {
-				quotes: this.findAllByLanguage(language),
+				quotes: [
+					...this.findAllByLanguage(language),
+					...this.findAllCustomQuotes(),
+				],
 				supported: true,
 			};
 		}
@@ -39,12 +54,20 @@ class QuoteRepository {
 		};
 	}
 
+	private findCustomQuotes(category: string): Quote[] | undefined {
+		return this.customQuoteSource ? customQuotesForCategory(this.customQuoteSource, category) : undefined;
+	}
+
 	private findAllByLanguage(language: string): Quote[] {
 		return Object.values(this.groups).flatMap(group => (
 			group
 				.filter(quotes => quotes.language === language)
 				.flatMap(quotes => this.toQuoteList(quotes))
 		));
+	}
+
+	private findAllCustomQuotes(): Quote[] {
+		return this.customQuoteSource ? allCustomQuotes(this.customQuoteSource) : [];
 	}
 
 	private fallbackQuotes(): Quote[] {

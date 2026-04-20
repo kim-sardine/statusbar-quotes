@@ -78,7 +78,15 @@ class Quoter implements vscode.Disposable {
 		this.displaySeconds = displaySeconds;
 	}
 
+	public refreshQuotes(): void {
+		this.updateQuoteListAndChangeDisplay(true);
+	}
+
 	private getRandomQuoteFromQuoteList(): Quote {
+		if (this.quoteList.length === 0) {
+			return new Quote(constants.LANG_CUSTOM, this.category, 'No custom quotes are available yet.');
+		}
+
 		return this.quoteList[Math.floor(this.random() * this.quoteList.length)];
 	}
 

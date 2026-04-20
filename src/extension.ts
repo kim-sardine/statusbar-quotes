@@ -5,7 +5,7 @@ import StatusBarQuoteController from './statusBarQuoteController';
 let controller: StatusBarQuoteController | undefined;
 
 export function activate(context: vscode.ExtensionContext): void {
-	controller = new StatusBarQuoteController(readExtensionConfiguration());
+	controller = new StatusBarQuoteController(context, readExtensionConfiguration());
 	context.subscriptions.push(controller);
 }
 
